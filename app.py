@@ -74,8 +74,18 @@ st.markdown(
         }}
 
         .block-container {{
-            padding-top: 0rem;
+            padding-top: 1.5rem;
             max-width: 1100px;
+        }}
+
+        /* Neutralize Streamlit's native toolbar so it doesn't overlap our header */
+        header[data-testid="stHeader"] {{
+            background-color: transparent;
+            height: 0rem;
+        }}
+
+        header[data-testid="stHeader"] * {{
+            visibility: hidden;
         }}
 
         /* ---------- Header ---------- */
@@ -85,22 +95,16 @@ st.markdown(
             display: flex;
             align-items: center;
             gap: 18px;
-            border-radius: 0 0 10px 10px;
+            border-radius: 10px;
             margin-bottom: 28px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.15);
         }}
 
-        .rocket-btn img {{
+        .rocket-icon img {{
             width: 52px;
             height: 52px;
             border-radius: 50%;
             border: 2px solid {GOLD};
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }}
-
-        .rocket-btn img:hover {{
-            transform: scale(1.08);
         }}
 
         .site-title {{
@@ -270,7 +274,7 @@ st.markdown(
 )
 
 # --------------------------------------------------------------------------
-# SIDEBAR (the "sliding navigation" the rocket icon opens)
+# SIDEBAR
 # --------------------------------------------------------------------------
 with st.sidebar:
     st.markdown("## 🚀 Navigation")
@@ -282,24 +286,17 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
     st.markdown("---")
-    st.caption("Tap the rocket icon in the header to open or close this menu.")
+    st.caption("Use the arrow in the top-left corner to open or close this menu.")
 
 # --------------------------------------------------------------------------
-# HEADER (rocket icon click toggles Streamlit's native sidebar via link)
+# HEADER (static rocket icon — no longer clickable)
 # --------------------------------------------------------------------------
 st.markdown(
     f"""
     <div class="site-header">
-        <a class="rocket-btn" href="#" onclick="
-            const doc = window.parent.document;
-            const btn = doc.querySelector('button[kind=header]') ||
-                        doc.querySelector('[data-testid=stSidebarCollapsedControl] button') ||
-                        doc.querySelector('[data-testid=collapsedControl] button');
-            if (btn) {{ btn.click(); }}
-            return false;
-        ">
-            <img src="data:image/png;base64,{ROCKET_B64}" alt="Menu">
-        </a>
+        <div class="rocket-icon">
+            <img src="data:image/png;base64,{ROCKET_B64}" alt="SAT Math Resource Hub">
+        </div>
         <div>
             <p class="site-title">SAT Math Resource Hub</p>
             <p class="site-subtitle">Tutoring materials, videos, and practice — all in one place</p>
@@ -319,8 +316,8 @@ st.markdown(
         <p>
         Hi there, and welcome to your SAT Math study space! This page is designed to make review
         simple: start with the study guide preview below, then use the topic menu to find video
-        lessons, example problems, and key vocabulary for each concept. Click the rocket icon in
-        the top-left corner any time to jump straight to a section using the side menu.
+        lessons, example problems, and key vocabulary for each concept. Use the arrow in the
+        top-left corner any time to open the side menu and jump straight to a section.
         Below you will find
         </p>
     </div>
@@ -363,46 +360,4 @@ with col2:
             angles and triangles, trigonometry, and circles.
             </p>
             <p style="color:#333; line-height:1.6;">
-            Click the preview image or the button to open the full document in a new tab.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# --------------------------------------------------------------------------
-# VIDEO RESOURCES / TOPIC DROPDOWNS
-# --------------------------------------------------------------------------
-st.markdown('<div id="video-resources"></div>', unsafe_allow_html=True)
-st.markdown('<span class="section-title">🎬 Video Resources & Study Material</span>', unsafe_allow_html=True)
-st.write("")
-
-for topic in TOPICS:
-    with st.expander(topic):
-        st.markdown('<div class="resource-label">🎥 YouTube Video Link</div>', unsafe_allow_html=True)
-        st.markdown(
-            f'<div class="placeholder-box">Placeholder — insert YouTube link for '
-            f'"{topic}" here.</div>',
-            unsafe_allow_html=True,
-        )
-
-        st.markdown('<div id="example-problems"></div>', unsafe_allow_html=True)
-        st.markdown('<div class="resource-label">✏️ Example Problems</div>', unsafe_allow_html=True)
-        st.markdown(
-            f'<div class="placeholder-box">Placeholder — insert example problems / worksheet '
-            f'link for "{topic}" here.</div>',
-            unsafe_allow_html=True,
-        )
-
-        st.markdown('<div id="key-words-and-phrases"></div>', unsafe_allow_html=True)
-        st.markdown('<div class="resource-label">🔑 Key Words and Phrases</div>', unsafe_allow_html=True)
-        st.markdown(
-            f'<div class="placeholder-box">Placeholder — insert key vocabulary '
-            f'for "{topic}" here.</div>',
-            unsafe_allow_html=True,
-        )
-
-st.markdown(
-    '<div class="footer-note">SAT Math Resource Hub · Built for focused, guided review</div>',
-    unsafe_allow_html=True,
-)
+            Click the preview image or the button to open
