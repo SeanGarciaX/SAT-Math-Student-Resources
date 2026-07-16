@@ -42,6 +42,10 @@ VIDEO_LINKS = {
         ("Discriminant Rule", "https://www.youtube.com/watch?v=WizUEZSHyWo"),
         ("Quadratic Formula", "https://www.youtube.com/watch?v=Yytf1CSXZgE"),
     ],
+    "Ratios, Rates and Proportions": [
+        ("Unit Conversion using the Dimensional Analysis Method", "https://www.youtube.com/watch?v=HRe1mire4Gc&t=1s"),
+        ("Unit Conversion for Squared or Cubed Units", "https://www.youtube.com/watch?v=MRiUQsfI_2k"),
+    ],
 }
 
 EXAMPLE_PROBLEMS = {
