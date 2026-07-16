@@ -278,8 +278,6 @@ with st.sidebar:
         f"""
         <a class="sidebar-link" href="#study-guide">📘 Study Guide</a>
         <a class="sidebar-link" href="#video-resources">🎬 Video Resources</a>
-        <a class="sidebar-link" href="#example-problems">✏️ Example Problems</a>
-        <a class="sidebar-link" href="#key-words-and-phrases">🔑 Key Words and Phrases</a>
         """,
         unsafe_allow_html=True,
     )
