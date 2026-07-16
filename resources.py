@@ -12,6 +12,7 @@
 
 VIDEO_LINKS = {
     "Desmos Tutorial": ("DESMOS for Beginners", "https://www.youtube.com/watch?v=6SpIlYzIWbo"),
+    "Linear Equations": ("Slope-Intercept Form (y = mx + b)", "https://www.youtube.com/watch?v=VUksb273hv8"),
 }
 
 EXAMPLE_PROBLEMS = {
