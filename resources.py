@@ -43,6 +43,23 @@ VIDEO_LINKS = {
         ("Discriminant Rule", "https://www.youtube.com/watch?v=WizUEZSHyWo"),
         ("Quadratic Formula", "https://www.youtube.com/watch?v=Yytf1CSXZgE"),
     ],
+    "Functions": [
+        ("Evaluating Functions in DESMOS", "https://www.youtube.com/watch?v=M9Uhvbe_chQ"),
+    ],
+    "Right Triangles": [
+        ("Special Right Triangles", "https://www.youtube.com/watch?v=6SC4JNSuBJQ"),
+        ("Pythagorean Theorem", "https://www.youtube.com/watch?v=uthjpYKD7Ng"),
+    ],
+    "Areas": [
+        ("Area of a Square", "https://www.youtube.com/watch?v=tKPxFv0x4VY"),
+        ("Area of a Triangle", "https://www.youtube.com/watch?v=-IprFDyKPzE"),
+        ("Area of a Circle", "https://www.youtube.com/watch?v=89O0rcCKVSY"),
+        ("Area of a rectangle", "https://www.youtube.com/watch?v=SM8y76l4arI"),
+    ],
+    "Table of Values": [
+        ("Solving Table of Values (Slope Formula Method)", "https://www.youtube.com/watch?v=NaRB0n3MXYo"),
+        ("Solving Table of Values (Desmos Regression Method)", "https://www.youtube.com/watch?v=SJnY-hSTpFs"),
+    ],
     "Ratios, Rates and Proportions": [
         ("Unit Conversion using the Dimensional Analysis Method", "https://www.youtube.com/watch?v=HRe1mire4Gc&t=1s"),
         ("Unit Conversion for Squared or Cubed Units", "https://www.youtube.com/watch?v=MRiUQsfI_2k"),
