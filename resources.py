@@ -15,7 +15,6 @@
 # EXAMPLE_PROBLEMS format: "Topic Name": "text or link"      (not used yet)
 # KEY_WORDS format:        "Topic Name": "text or link"      (not used yet)
 # --------------------------------------------------------------------------
-
 VIDEO_LINKS = {
     "Desmos Tutorial": [
         ("DESMOS for Beginners", "https://www.youtube.com/watch?v=6SpIlYzIWbo"),
@@ -34,6 +33,8 @@ VIDEO_LINKS = {
     "Equation of a Circle": [
         ("Equation of a Circle Video", "https://www.youtube.com/watch?v=QutKdoLiffc"),
         ("Solving Equation of a Circle Problems in DESMOS", "https://www.youtube.com/watch?v=Ejzcmgupq-k"),
+        ("Completing the Square for Circle Equations", "https://www.youtube.com/watch?v=fVCCkNEKTBk"),
+        ("Find the endpoints from the diameter", "https://www.youtube.com/watch?v=OKsIh-pqGaE&t=109s"),
     ],
     "Quadratic Equations": [
         ("Introduction to Quadratic Equations", "https://www.youtube.com/watch?v=xSpFz8JDbZk"),
@@ -47,11 +48,9 @@ VIDEO_LINKS = {
         ("Unit Conversion for Squared or Cubed Units", "https://www.youtube.com/watch?v=MRiUQsfI_2k"),
     ],
 }
-
 EXAMPLE_PROBLEMS = {
     # "Topic Name": "text or link",
 }
-
 KEY_WORDS = {
     # "Topic Name": "text or link",
 }
