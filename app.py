@@ -64,7 +64,7 @@ TOPICS = [
 # GLOBAL CSS
 # --------------------------------------------------------------------------
 st.markdown(
-    f"""
+    f'''
     <style>
         #MainMenu {{visibility: hidden;}}
         footer {{visibility: hidden;}}
@@ -269,7 +269,7 @@ st.markdown(
             padding-bottom: 20px;
         }}
     </style>
-    """,
+    ''',
     unsafe_allow_html=True,
 )
 
@@ -279,30 +279,30 @@ st.markdown(
 with st.sidebar:
     st.markdown("## 🚀 Navigation")
     st.markdown(
-        f"""
+        f'''
         <a class="sidebar-link" href="#study-guide">📘 Study Guide</a>
         <a class="sidebar-link" href="#video-resources">🎬 Video Resources</a>
-        """,
+        ''',
         unsafe_allow_html=True,
     )
     st.markdown("---")
     st.caption("Use the arrow in the top-left corner to open or close this menu.")
 
 # --------------------------------------------------------------------------
-# HEADER (static rocket icon — no longer clickable)
+# HEADER (static rocket icon - no longer clickable)
 # --------------------------------------------------------------------------
 st.markdown(
-    f"""
+    f'''
     <div class="site-header">
         <div class="rocket-icon">
             <img src="data:image/png;base64,{ROCKET_B64}" alt="SAT Math Resource Hub">
         </div>
         <div>
             <p class="site-title">SAT Math Resource Hub</p>
-            <p class="site-subtitle">Tutoring materials, videos, and practice — all in one place</p>
+            <p class="site-subtitle">Tutoring materials, videos, and practice - all in one place</p>
         </div>
     </div>
-    """,
+    ''',
     unsafe_allow_html=True,
 )
 
@@ -310,7 +310,7 @@ st.markdown(
 # WELCOME / HOW-TO MESSAGE
 # --------------------------------------------------------------------------
 st.markdown(
-    """
+    '''
     <div class="welcome-box">
         <h3>Welcome! 👋</h3>
         <p>
@@ -321,7 +321,7 @@ st.markdown(
         Below you will find
         </p>
     </div>
-    """,
+    ''',
     unsafe_allow_html=True,
 )
 
@@ -335,7 +335,7 @@ col1, col2 = st.columns([1, 1.6])
 
 with col1:
     st.markdown(
-        f"""
+        f'''
         <div class="guide-card guide-link-wrap">
             <a href="data:application/pdf;base64,{PDF_B64}" target="_blank">
                 <img class="guide-thumb" src="data:image/png;base64,{PREVIEW_B64}" width="100%">
@@ -345,19 +345,61 @@ with col1:
                 Open Full Study Guide
             </a>
         </div>
-        """,
+        ''',
         unsafe_allow_html=True,
     )
 
 with col2:
     st.markdown(
-        """
+        '''
         <div class="guide-card">
             <h3>SAT Math Cram Sheet</h3>
             <p style="color:#333; line-height:1.6;">
-            This quick-reference guide covers the core SAT Math formulas and concepts —
+            This quick-reference guide covers the core SAT Math formulas and concepts -
             percents, ratios, slope, systems of equations, charts, area and volume,
             angles and triangles, trigonometry, and circles.
             </p>
             <p style="color:#333; line-height:1.6;">
-            Click the preview image or the button to open
+            Click the preview image or the button to open the full document in a new tab.
+            </p>
+        </div>
+        ''',
+        unsafe_allow_html=True,
+    )
+
+# --------------------------------------------------------------------------
+# VIDEO RESOURCES / TOPIC DROPDOWNS
+# --------------------------------------------------------------------------
+st.markdown('<div id="video-resources"></div>', unsafe_allow_html=True)
+st.markdown('<span class="section-title">🎬 Video Resources & Study Material</span>', unsafe_allow_html=True)
+st.write("")
+
+for topic in TOPICS:
+    with st.expander(topic):
+        st.markdown('<div class="resource-label">🎥 YouTube Video Link</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="placeholder-box">Placeholder - insert YouTube link for '
+            f'"{topic}" here.</div>',
+            unsafe_allow_html=True,
+        )
+
+        st.markdown('<div id="example-problems"></div>', unsafe_allow_html=True)
+        st.markdown('<div class="resource-label">✏️ Example Problems</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="placeholder-box">Placeholder - insert example problems / worksheet '
+            f'link for "{topic}" here.</div>',
+            unsafe_allow_html=True,
+        )
+
+        st.markdown('<div id="key-words-and-phrases"></div>', unsafe_allow_html=True)
+        st.markdown('<div class="resource-label">🔑 Key Words and Phrases</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="placeholder-box">Placeholder - insert key vocabulary '
+            f'for "{topic}" here.</div>',
+            unsafe_allow_html=True,
+        )
+
+st.markdown(
+    '<div class="footer-note">SAT Math Resource Hub · Built for focused, guided review</div>',
+    unsafe_allow_html=True,
+)
