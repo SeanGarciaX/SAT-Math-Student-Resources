@@ -3,6 +3,8 @@ from pathlib import Path
 
 import streamlit as st
 
+from resources import VIDEO_LINKS, EXAMPLE_PROBLEMS, KEY_WORDS
+
 # --------------------------------------------------------------------------
 # PAGE CONFIG
 # --------------------------------------------------------------------------
@@ -446,11 +448,21 @@ st.write("")
 for topic in TOPICS:
     with st.expander(topic):
         st.markdown('<div class="resource-label">🎥 YouTube Video Link</div>', unsafe_allow_html=True)
-        st.markdown(
-            f'<div class="placeholder-box">Placeholder - insert YouTube link for '
-            f'"{topic}" here.</div>',
-            unsafe_allow_html=True,
-        )
+        if topic in VIDEO_LINKS:
+            video_title, video_url = VIDEO_LINKS[topic]
+            st.markdown(
+                f'<div class="placeholder-box" style="border-style: solid; '
+                f'background-color: #FFF8E1;">'
+                f'<a href="{video_url}" target="_blank" style="color:{NAVY}; '
+                f'font-weight:600; text-decoration:none;">▶ {video_title}</a></div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                f'<div class="placeholder-box">Placeholder - insert YouTube link for '
+                f'"{topic}" here.</div>',
+                unsafe_allow_html=True,
+            )
 
         st.markdown('<div id="example-problems"></div>', unsafe_allow_html=True)
         st.markdown('<div class="resource-label">✏️ Example Problems</div>', unsafe_allow_html=True)
