@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="SAT Math Resource Hub",
     page_icon="🚀",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 ASSETS = Path(__file__).parent / "assets"
@@ -30,6 +30,13 @@ def img_to_base64(path: Path) -> str:
 ROCKET_B64 = img_to_base64(ROCKET_ICON)
 PREVIEW_B64 = img_to_base64(STUDY_GUIDE_PREVIEW)
 PDF_B64 = img_to_base64(STUDY_GUIDE_PDF)
+
+if "sidebar_open" not in st.session_state:
+    st.session_state.sidebar_open = False
+
+
+def toggle_sidebar():
+    st.session_state.sidebar_open = not st.session_state.sidebar_open
 
 # --------------------------------------------------------------------------
 # TOPIC LIST
@@ -61,6 +68,25 @@ TOPICS = [
 ]
 
 # --------------------------------------------------------------------------
+# SIDEBAR VISIBILITY CSS (driven by session_state, not by native collapse)
+# --------------------------------------------------------------------------
+if st.session_state.sidebar_open:
+    SIDEBAR_VISIBILITY_CSS = '''
+    section[data-testid="stSidebar"] {
+        display: block !important;
+        min-width: 260px !important;
+        width: 260px !important;
+        transform: none !important;
+    }
+    '''
+else:
+    SIDEBAR_VISIBILITY_CSS = '''
+    section[data-testid="stSidebar"] {
+        display: none !important;
+    }
+    '''
+
+# --------------------------------------------------------------------------
 # GLOBAL CSS
 # --------------------------------------------------------------------------
 st.markdown(
@@ -88,33 +114,43 @@ st.markdown(
             visibility: hidden;
         }}
 
-        /* ---------- Custom sidebar toggle button ---------- */
-        .sidebar-toggle-btn {{
+        /* ---------- Custom sidebar toggle button (a real st.button, repositioned) ---------- */
+        div[data-testid="stButton"] {{
             position: fixed;
             top: 14px;
             left: 14px;
             z-index: 999999;
+        }}
+
+        div[data-testid="stButton"] button {{
             width: 40px;
             height: 40px;
+            padding: 0;
             background-color: {NAVY};
             color: {GOLD};
             border: 2px solid {GOLD};
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 16px;
             font-weight: 700;
             letter-spacing: -2px;
-            cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.25);
             transition: transform 0.15s ease, background-color 0.15s ease;
         }}
 
-        .sidebar-toggle-btn:hover {{
+        div[data-testid="stButton"] button:hover {{
             transform: scale(1.06);
             background-color: #14306e;
+            color: {GOLD};
+            border: 2px solid {GOLD};
         }}
+
+        /* Hide the sidebar's own native collapse arrow - we use our own button instead */
+        div[data-testid="stSidebarCollapseButton"],
+        button[data-testid="stSidebarCollapseButton"] {{
+            display: none !important;
+        }}
+
+        {SIDEBAR_VISIBILITY_CSS}
 
         /* ---------- Header ---------- */
         .site-header {{
@@ -319,19 +355,7 @@ with st.sidebar:
 # --------------------------------------------------------------------------
 # CUSTOM SIDEBAR TOGGLE BUTTON (top-left corner)
 # --------------------------------------------------------------------------
-st.markdown(
-    '''
-    <div class="sidebar-toggle-btn" onclick="
-        const doc = window.parent.document;
-        const btn = doc.querySelector('[data-testid=stSidebarCollapsedControl] button') ||
-                    doc.querySelector('[data-testid=collapsedControl] button') ||
-                    doc.querySelector('[data-testid=stSidebarCollapsedControl]') ||
-                    doc.querySelector('button[kind=header]');
-        if (btn) { btn.click(); }
-    ">&raquo;&rsaquo;</div>
-    ''',
-    unsafe_allow_html=True,
-)
+st.button("»›", key="sidebar_toggle_btn", on_click=toggle_sidebar)
 
 # --------------------------------------------------------------------------
 # HEADER (static rocket icon - no longer clickable)
