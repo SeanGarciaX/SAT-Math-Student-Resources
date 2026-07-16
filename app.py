@@ -449,14 +449,14 @@ for topic in TOPICS:
     with st.expander(topic):
         st.markdown('<div class="resource-label">🎥 YouTube Video Link</div>', unsafe_allow_html=True)
         if topic in VIDEO_LINKS:
-            video_title, video_url = VIDEO_LINKS[topic]
-            st.markdown(
-                f'<div class="placeholder-box" style="border-style: solid; '
-                f'background-color: #FFF8E1;">'
-                f'<a href="{video_url}" target="_blank" style="color:{NAVY}; '
-                f'font-weight:600; text-decoration:none;">▶ {video_title}</a></div>',
-                unsafe_allow_html=True,
-            )
+            for video_title, video_url in VIDEO_LINKS[topic]:
+                st.markdown(
+                    f'<div class="placeholder-box" style="border-style: solid; '
+                    f'background-color: #FFF8E1;">'
+                    f'<a href="{video_url}" target="_blank" style="color:{NAVY}; '
+                    f'font-weight:600; text-decoration:none;">▶ {video_title}</a></div>',
+                    unsafe_allow_html=True,
+                )
         else:
             st.markdown(
                 f'<div class="placeholder-box">Placeholder - insert YouTube link for '
