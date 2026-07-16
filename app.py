@@ -78,7 +78,7 @@ st.markdown(
             max-width: 1100px;
         }}
 
-        /* Neutralize Streamlit's native toolbar so it doesn't overlap our header */
+        /* Fully hide Streamlit's native header/toolbar - replaced by our own toggle button */
         header[data-testid="stHeader"] {{
             background-color: transparent;
             height: 0rem;
@@ -86,6 +86,34 @@ st.markdown(
 
         header[data-testid="stHeader"] * {{
             visibility: hidden;
+        }}
+
+        /* ---------- Custom sidebar toggle button ---------- */
+        .sidebar-toggle-btn {{
+            position: fixed;
+            top: 14px;
+            left: 14px;
+            z-index: 999999;
+            width: 40px;
+            height: 40px;
+            background-color: {NAVY};
+            color: {GOLD};
+            border: 2px solid {GOLD};
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }}
+
+        .sidebar-toggle-btn:hover {{
+            transform: scale(1.06);
+            background-color: #14306e;
         }}
 
         /* ---------- Header ---------- */
@@ -286,7 +314,24 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
     st.markdown("---")
-    st.caption("Use the arrow in the top-left corner to open or close this menu.")
+    st.caption("Use the arrow button in the top-left corner to open or close this menu.")
+
+# --------------------------------------------------------------------------
+# CUSTOM SIDEBAR TOGGLE BUTTON (top-left corner)
+# --------------------------------------------------------------------------
+st.markdown(
+    '''
+    <div class="sidebar-toggle-btn" onclick="
+        const doc = window.parent.document;
+        const btn = doc.querySelector('[data-testid=stSidebarCollapsedControl] button') ||
+                    doc.querySelector('[data-testid=collapsedControl] button') ||
+                    doc.querySelector('[data-testid=stSidebarCollapsedControl]') ||
+                    doc.querySelector('button[kind=header]');
+        if (btn) { btn.click(); }
+    ">&raquo;&rsaquo;</div>
+    ''',
+    unsafe_allow_html=True,
+)
 
 # --------------------------------------------------------------------------
 # HEADER (static rocket icon - no longer clickable)
@@ -316,8 +361,8 @@ st.markdown(
         <p>
         Hi there, and welcome to your SAT Math study space! This page is designed to make review
         simple: start with the study guide preview below, then use the topic menu to find video
-        lessons, example problems, and key vocabulary for each concept. Use the arrow in the
-        top-left corner any time to open the side menu and jump straight to a section.
+        lessons, example problems, and key vocabulary for each concept. Use the arrow button in
+        the top-left corner any time to open the side menu and jump straight to a section.
         Below you will find
         </p>
     </div>
