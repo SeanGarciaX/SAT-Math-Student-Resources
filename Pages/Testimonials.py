@@ -95,15 +95,15 @@ st.markdown(
             visibility: hidden;
         }}
 
-        /* ---------- Custom sidebar toggle button ---------- */
-        div[data-testid="stButton"] {{
+        /* ---------- Custom sidebar toggle button (scoped to main body only) ---------- */
+        .main div[data-testid="stButton"] {{
             position: fixed;
             top: 14px;
             left: 14px;
             z-index: 999999;
         }}
 
-        div[data-testid="stButton"] button {{
+        .main div[data-testid="stButton"] button {{
             width: 40px;
             height: 40px;
             padding: 0;
@@ -118,7 +118,7 @@ st.markdown(
             transition: transform 0.15s ease, background-color 0.15s ease;
         }}
 
-        div[data-testid="stButton"] button:hover {{
+        .main div[data-testid="stButton"] button:hover {{
             transform: scale(1.06);
             background-color: #14306e;
             color: {GOLD};
@@ -212,6 +212,33 @@ st.markdown(
 
         .sidebar-link.active {{
             background-color: rgba(245,183,0,0.25);
+        }}
+
+        /* ---------- Sidebar nav buttons (st.button standing in for anchor links) ---------- */
+        section[data-testid="stSidebar"] div[data-testid="stButton"] {{
+            position: static;
+            margin-bottom: 6px;
+        }}
+
+        section[data-testid="stSidebar"] div[data-testid="stButton"] button {{
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            background-color: rgba(255,255,255,0.05);
+            border: none;
+            box-shadow: none;
+            transition: background-color 0.2s ease;
+        }}
+
+        section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {{
+            background-color: rgba(245,183,0,0.2);
+            color: white;
+            transform: none;
         }}
 
         /* ---------- Cloud grid ---------- */
@@ -356,12 +383,12 @@ st.markdown(
 # --------------------------------------------------------------------------
 with st.sidebar:
     st.markdown("## 🚀 Navigation")
+    if st.button("📘 Study Guide", key="nav_study_guide_btn"):
+        st.switch_page("app.py")
+    if st.button("🎬 Video Resources", key="nav_video_resources_btn"):
+        st.switch_page("app.py")
     st.markdown(
-        '''
-        <a class="sidebar-link" href="/">📘 Study Guide</a>
-        <a class="sidebar-link" href="/">🎬 Video Resources</a>
-        <a class="sidebar-link active" href="/Testimonials">⭐ Testimonials</a>
-        ''',
+        '<a class="sidebar-link active" href="#">⭐ Testimonials</a>',
         unsafe_allow_html=True,
     )
     st.markdown("---")
