@@ -30,12 +30,6 @@ VIDEO_LINKS = {
         ("Exponential Growth and Decay Video", "https://www.youtube.com/watch?v=1ZE5EihrtZc"),
         ("Compound Interest Formula", "https://www.youtube.com/watch?v=U0Lwyh9ONMM&t=5s"),
     ],
-    "Equation of a Circle": [
-        ("Equation of a Circle Video", "https://www.youtube.com/watch?v=QutKdoLiffc"),
-        ("Solving Equation of a Circle Problems in DESMOS", "https://www.youtube.com/watch?v=Ejzcmgupq-k"),
-        ("Completing the Square for Circle Equations", "https://www.youtube.com/watch?v=fVCCkNEKTBk"),
-        ("Find the endpoints from the diameter", "https://www.youtube.com/watch?v=OKsIh-pqGaE&t=109s"),
-    ],
     "Quadratic Equations": [
         ("Introduction to Quadratic Equations", "https://www.youtube.com/watch?v=xSpFz8JDbZk"),
         ("Quadratic Vertex Form", "https://www.youtube.com/watch?v=A2eK7VziEn0&t=90s"),
@@ -43,9 +37,23 @@ VIDEO_LINKS = {
         ("Discriminant Rule", "https://www.youtube.com/watch?v=WizUEZSHyWo"),
         ("Quadratic Formula", "https://www.youtube.com/watch?v=Yytf1CSXZgE"),
     ],
+    "Equation of a Circle": [
+        ("Equation of a Circle Video", "https://www.youtube.com/watch?v=QutKdoLiffc"),
+        ("Solving Equation of a Circle Problems in DESMOS", "https://www.youtube.com/watch?v=Ejzcmgupq-k"),
+        ("Completing the Square for Circle Equations", "https://www.youtube.com/watch?v=fVCCkNEKTBk"),
+        ("Find the endpoints from the diameter", "https://www.youtube.com/watch?v=OKsIh-pqGaE&t=109s"),
+    ],
     "Functions": [
         ("Evaluating Functions in DESMOS", "https://www.youtube.com/watch?v=M9Uhvbe_chQ"),
         ("Desmos Hacks", "https://www.youtube.com/watch?v=ZYDcmWtfLkk&t=77s"),
+    ],
+    "Equivalent Expressions": [
+        ("Artimetic Example", "https://www.youtube.com/watch?v=9uUUGk5H2Dk&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB"), 
+        ("Distribution Example", "https://www.youtube.com/watch?v=7nQvGmGOJNY&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=2"),
+        ("Facotring Example", "https://www.youtube.com/watch?v=DDmsRSWDGhQ&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=3"), 
+        ("Multi-Step Example", "https://www.youtube.com/watch?v=z0b64JRnvbM&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=4"), 
+        ("Substitution Example", "https://www.youtube.com/watch?v=2RlzU8qEQK4&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=6"), 
+        ("Multi-Function Example", "https://www.youtube.com/watch?v=G1VBSnJZFws&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=8"), 
     ],
     "Right Triangles": [
         ("Special Right Triangles", "https://www.youtube.com/watch?v=6SC4JNSuBJQ"),
