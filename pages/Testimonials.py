@@ -438,16 +438,16 @@ st.markdown(
 # --------------------------------------------------------------------------
 clouds_html = '<div class="cloud-field">'
 for t in TESTIMONIALS:
-    clouds_html += f'''
-    <div class="cloud-container">
-        <div class="cloud">
-            <div class="cloud-text">
-                "{t["text"]}"
-                <span class="cloud-name">— {t["name"]}</span>
-            </div>
-        </div>
-    </div>
-    '''
+    clouds_html += (
+        f'<div class="cloud-container">'
+        f'<div class="cloud">'
+        f'<div class="cloud-text">'
+        f'"{t["text"]}"'
+        f'<span class="cloud-name">— {t["name"]}</span>'
+        f'</div>'
+        f'</div>'
+        f'</div>'
+    )
 clouds_html += '</div>'
 
 st.markdown(clouds_html, unsafe_allow_html=True)
