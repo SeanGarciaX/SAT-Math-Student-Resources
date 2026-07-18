@@ -117,14 +117,15 @@ st.markdown(
         }}
 
         /* ---------- Custom sidebar toggle button (a real st.button, repositioned) ---------- */
-        div[data-testid="stButton"] {{
+        /* Scoped so it ONLY affects the toggle button in the main body, not sidebar buttons */
+        .main div[data-testid="stButton"] {{
             position: fixed;
             top: 14px;
             left: 14px;
             z-index: 999999;
         }}
 
-        div[data-testid="stButton"] button {{
+        .main div[data-testid="stButton"] button {{
             width: 40px;
             height: 40px;
             padding: 0;
@@ -139,7 +140,7 @@ st.markdown(
             transition: transform 0.15s ease, background-color 0.15s ease;
         }}
 
-        div[data-testid="stButton"] button:hover {{
+        .main div[data-testid="stButton"] button:hover {{
             transform: scale(1.06);
             background-color: #14306e;
             color: {GOLD};
@@ -327,6 +328,33 @@ st.markdown(
             background-color: rgba(245,183,0,0.2);
         }}
 
+        /* ---------- Sidebar nav button (st.button standing in for the Testimonials link) ---------- */
+        section[data-testid="stSidebar"] div[data-testid="stButton"] {{
+            position: static;
+            margin-bottom: 6px;
+        }}
+
+        section[data-testid="stSidebar"] div[data-testid="stButton"] button {{
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            background-color: rgba(255,255,255,0.05);
+            border: none;
+            box-shadow: none;
+            transition: background-color 0.2s ease;
+        }}
+
+        section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {{
+            background-color: rgba(245,183,0,0.2);
+            color: white;
+            transform: none;
+        }}
+
         .footer-note {{
             text-align: center;
             color: #8A93A6;
@@ -345,13 +373,14 @@ st.markdown(
 with st.sidebar:
     st.markdown("## 🚀 Navigation")
     st.markdown(
-        f'''
+        '''
         <a class="sidebar-link" href="#study-guide">📘 Study Guide</a>
         <a class="sidebar-link" href="#video-resources">🎬 Video Resources</a>
-        <a class="sidebar-link" href="/Testimonials">⭐ Testimonials</a>
         ''',
         unsafe_allow_html=True,
     )
+    if st.button("⭐ Testimonials", key="nav_testimonials_btn"):
+        st.switch_page("pages/Testimonials.py")
     st.markdown("---")
     st.caption("Use the arrow button in the top-left corner to open or close this menu.")
 
