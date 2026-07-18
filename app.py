@@ -348,6 +348,7 @@ with st.sidebar:
         f'''
         <a class="sidebar-link" href="#study-guide">📘 Study Guide</a>
         <a class="sidebar-link" href="#video-resources">🎬 Video Resources</a>
+        <a class="sidebar-link" href="#">⭐ Testimonials</a>
         ''',
         unsafe_allow_html=True,
     )
