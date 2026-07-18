@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# assets folder lives one level up (next to app.py)
+# Assets folder lives one level up, next to app.py
 ASSETS = Path(__file__).parent.parent / "assets"
 ROCKET_ICON = ASSETS / "rocket_icon.png"
 
@@ -24,6 +24,7 @@ SKY_BLUE = "#E8F4FD"
 
 
 def img_to_base64(path: Path) -> str:
+    """Convert an image file to a Base64 string."""
     return base64.b64encode(path.read_bytes()).decode()
 
 
@@ -33,52 +34,81 @@ if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = False
 
 
-def toggle_sidebar():
+def toggle_sidebar() -> None:
+    """Open or close the custom sidebar."""
     st.session_state.sidebar_open = not st.session_state.sidebar_open
+
 
 # --------------------------------------------------------------------------
 # PLACEHOLDER TESTIMONIALS
-# (Replace the "text" values below with real student messages later)
+# Replace the text values below with real student messages later.
 # --------------------------------------------------------------------------
 TESTIMONIALS = [
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
-    {"name": "Student Name", "text": "Testimonial placeholder - insert student message here."},
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
+    {
+        "name": "Student Name",
+        "text": "Testimonial placeholder - insert student message here.",
+    },
 ]
 
 # --------------------------------------------------------------------------
 # SIDEBAR VISIBILITY CSS
 # --------------------------------------------------------------------------
 if st.session_state.sidebar_open:
-    SIDEBAR_VISIBILITY_CSS = '''
+    SIDEBAR_VISIBILITY_CSS = """
     section[data-testid="stSidebar"] {
         display: block !important;
         min-width: 260px !important;
         width: 260px !important;
         transform: none !important;
     }
-    '''
+    """
 else:
-    SIDEBAR_VISIBILITY_CSS = '''
+    SIDEBAR_VISIBILITY_CSS = """
     section[data-testid="stSidebar"] {
         display: none !important;
     }
-    '''
+    """
 
 # --------------------------------------------------------------------------
 # GLOBAL CSS
 # --------------------------------------------------------------------------
 st.markdown(
-    f'''
+    f"""
     <style>
-        #MainMenu {{visibility: hidden;}}
-        footer {{visibility: hidden;}}
+        #MainMenu {{
+            visibility: hidden;
+        }}
+
+        footer {{
+            visibility: hidden;
+        }}
 
         .stApp {{
-            background: linear-gradient(180deg, {SKY_BLUE} 0%, {LIGHT_BG} 55%);
+            background: linear-gradient(
+                180deg,
+                {SKY_BLUE} 0%,
+                {LIGHT_BG} 55%
+            );
         }}
 
         .block-container {{
@@ -95,7 +125,19 @@ st.markdown(
             visibility: hidden;
         }}
 
-        /* ---------- Custom sidebar toggle button (scoped to main body only) ---------- */
+        /*
+        Hide Streamlit's automatic multipage navigation.
+
+        This removes the automatic "App" and first "Testimonials" entries,
+        while preserving the custom Study Guide, Video Resources, and
+        Testimonials links created below.
+        */
+        section[data-testid="stSidebarNav"],
+        div[data-testid="stSidebarNav"] {{
+            display: none !important;
+        }}
+
+        /* ---------- Custom sidebar toggle button ---------- */
         .main div[data-testid="stButton"] {{
             position: fixed;
             top: 14px;
@@ -114,13 +156,15 @@ st.markdown(
             font-size: 16px;
             font-weight: 700;
             letter-spacing: -2px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-            transition: transform 0.15s ease, background-color 0.15s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            transition:
+                transform 0.15s ease,
+                background-color 0.15s ease;
         }}
 
         .main div[data-testid="stButton"] button:hover {{
             transform: scale(1.06);
-            background-color: #14306e;
+            background-color: #14306E;
             color: {GOLD};
             border: 2px solid {GOLD};
         }}
@@ -141,7 +185,7 @@ st.markdown(
             gap: 18px;
             border-radius: 10px;
             margin-bottom: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
         }}
 
         .site-title {{
@@ -178,7 +222,8 @@ st.markdown(
         .page-subtitle {{
             color: #5A6B87;
             font-size: 16px;
-            margin-top: -6px;
+            line-height: 1.6;
+            margin-top: 4px;
         }}
 
         /* ---------- Sidebar ---------- */
@@ -202,19 +247,19 @@ st.markdown(
             color: white !important;
             text-decoration: none;
             font-weight: 500;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             transition: background-color 0.2s ease;
         }}
 
         .sidebar-link:hover {{
-            background-color: rgba(245,183,0,0.2);
+            background-color: rgba(245, 183, 0, 0.2);
         }}
 
         .sidebar-link.active {{
-            background-color: rgba(245,183,0,0.25);
+            background-color: rgba(245, 183, 0, 0.25);
         }}
 
-        /* ---------- Sidebar nav buttons (st.button standing in for anchor links) ---------- */
+        /* ---------- Custom sidebar navigation buttons ---------- */
         section[data-testid="stSidebar"] div[data-testid="stButton"] {{
             position: static;
             margin-bottom: 6px;
@@ -229,14 +274,15 @@ st.markdown(
             color: white;
             font-weight: 500;
             font-size: 14px;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             border: none;
             box-shadow: none;
             transition: background-color 0.2s ease;
         }}
 
-        section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {{
-            background-color: rgba(245,183,0,0.2);
+        section[data-testid="stSidebar"]
+        div[data-testid="stButton"] button:hover {{
+            background-color: rgba(245, 183, 0, 0.2);
             color: white;
             transform: none;
         }}
@@ -262,20 +308,22 @@ st.markdown(
             position: relative;
             width: 220px;
             height: 130px;
-            background: #ffffff;
+            background: #FFFFFF;
             border-radius: 100px;
-            box-shadow: 0 6px 16px rgba(10,31,68,0.12);
+            box-shadow: 0 6px 16px rgba(10, 31, 68, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
             cursor: pointer;
         }}
 
-        .cloud:before {{
-            content: '';
+        .cloud::before {{
+            content: "";
             position: absolute;
-            background: #ffffff;
+            background: #FFFFFF;
             border-radius: 100px;
             width: 110px;
             height: 110px;
@@ -283,10 +331,10 @@ st.markdown(
             left: 20px;
         }}
 
-        .cloud:after {{
-            content: '';
+        .cloud::after {{
+            content: "";
             position: absolute;
-            background: #ffffff;
+            background: #FFFFFF;
             border-radius: 100px;
             width: 90px;
             height: 90px;
@@ -296,7 +344,7 @@ st.markdown(
 
         .cloud:hover {{
             transform: scale(1.1);
-            box-shadow: 0 10px 24px rgba(10,31,68,0.2);
+            box-shadow: 0 10px 24px rgba(10, 31, 68, 0.2);
         }}
 
         .cloud-text {{
@@ -332,7 +380,7 @@ st.markdown(
             justify-content: center;
             gap: 34px;
             flex-wrap: wrap;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }}
@@ -343,9 +391,17 @@ st.markdown(
         }}
 
         @keyframes float-rocket {{
-            0%   {{ transform: translateY(0px) rotate(-4deg); }}
-            50%  {{ transform: translateY(-16px) rotate(4deg); }}
-            100% {{ transform: translateY(0px) rotate(-4deg); }}
+            0% {{
+                transform: translateY(0) rotate(-4deg);
+            }}
+
+            50% {{
+                transform: translateY(-16px) rotate(4deg);
+            }}
+
+            100% {{
+                transform: translateY(0) rotate(-4deg);
+            }}
         }}
 
         .rocket-message {{
@@ -373,8 +429,38 @@ st.markdown(
             margin-top: 30px;
             padding-bottom: 20px;
         }}
+
+        /* ---------- Mobile responsiveness ---------- */
+        @media (max-width: 700px) {{
+            .block-container {{
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }}
+
+            .site-header {{
+                padding: 16px 18px;
+            }}
+
+            .site-title {{
+                font-size: 21px;
+            }}
+
+            .site-subtitle {{
+                font-size: 12px;
+            }}
+
+            .page-title {{
+                font-size: 34px;
+            }}
+
+            .cloud-field {{
+                gap: 38px;
+                padding-left: 0;
+                padding-right: 0;
+            }}
+        }}
     </style>
-    ''',
+    """,
     unsafe_allow_html=True,
 )
 
@@ -383,40 +469,59 @@ st.markdown(
 # --------------------------------------------------------------------------
 with st.sidebar:
     st.markdown("## 🚀 Navigation")
+
     if st.button("📘 Study Guide", key="nav_study_guide_btn"):
         st.switch_page("app.py")
+
     if st.button("🎬 Video Resources", key="nav_video_resources_btn"):
         st.switch_page("app.py")
+
+    # Keep this custom instance of Testimonials visible.
     st.markdown(
         '<a class="sidebar-link active" href="#">⭐ Testimonials</a>',
         unsafe_allow_html=True,
     )
+
     st.markdown("---")
-    st.caption("Use the arrow button in the top-left corner to open or close this menu.")
+    st.caption(
+        "Use the arrow button in the top-left corner to open or close this menu."
+    )
 
 # --------------------------------------------------------------------------
 # CUSTOM SIDEBAR TOGGLE BUTTON
 # --------------------------------------------------------------------------
-st.button("»›", key="sidebar_toggle_btn", on_click=toggle_sidebar)
+st.button(
+    "»›",
+    key="sidebar_toggle_btn",
+    on_click=toggle_sidebar,
+)
 
 # --------------------------------------------------------------------------
 # HEADER
 # --------------------------------------------------------------------------
 if ROCKET_B64:
-    header_icon_html = f'<img src="data:image/png;base64,{ROCKET_B64}" style="width:52px;height:52px;border-radius:50%;border:2px solid {GOLD};" alt="SAT Math Resource Hub">'
+    header_icon_html = (
+        f'<img src="data:image/png;base64,{ROCKET_B64}" '
+        f'style="width:52px;height:52px;border-radius:50%;'
+        f'border:2px solid {GOLD};" '
+        f'alt="SAT Math Resource Hub">'
+    )
 else:
     header_icon_html = '<span style="font-size:40px;">🚀</span>'
 
 st.markdown(
-    f'''
+    f"""
     <div class="site-header">
         <div>{header_icon_html}</div>
+
         <div>
             <p class="site-title">SAT Math Resource Hub</p>
-            <p class="site-subtitle">Tutoring materials, videos, and practice - all in one place</p>
+            <p class="site-subtitle">
+                Tutoring materials, videos, and practice — all in one place
+            </p>
         </div>
     </div>
-    ''',
+    """,
     unsafe_allow_html=True,
 )
 
@@ -424,13 +529,18 @@ st.markdown(
 # PAGE TITLE
 # --------------------------------------------------------------------------
 st.markdown(
-    '''
+    """
     <div class="page-title-wrap">
-        <div class="page-title"><span class="star">⭐</span> Testimonials</div>
-        <p class="page-subtitle">See What's Possible with the Right Support.
-Read Real Stories from Real Students.</p>
+        <div class="page-title">
+            <span class="star">⭐</span> Testimonials
+        </div>
+
+        <p class="page-subtitle">
+            See What’s Possible with the Right Support.<br>
+            Read Real Stories from Real Students.
+        </p>
     </div>
-    ''',
+    """,
     unsafe_allow_html=True,
 )
 
@@ -438,18 +548,22 @@ Read Real Stories from Real Students.</p>
 # CLOUD TESTIMONIALS
 # --------------------------------------------------------------------------
 clouds_html = '<div class="cloud-field">'
-for t in TESTIMONIALS:
-    clouds_html += (
-        f'<div class="cloud-container">'
-        f'<div class="cloud">'
-        f'<div class="cloud-text">'
-        f'"{t["text"]}"'
-        f'<span class="cloud-name">— {t["name"]}</span>'
-        f'</div>'
-        f'</div>'
-        f'</div>'
-    )
-clouds_html += '</div>'
+
+for testimonial in TESTIMONIALS:
+    clouds_html += f"""
+        <div class="cloud-container">
+            <div class="cloud">
+                <div class="cloud-text">
+                    “{testimonial["text"]}”
+                    <span class="cloud-name">
+                        — {testimonial["name"]}
+                    </span>
+                </div>
+            </div>
+        </div>
+    """
+
+clouds_html += "</div>"
 
 st.markdown(clouds_html, unsafe_allow_html=True)
 
@@ -457,24 +571,34 @@ st.markdown(clouds_html, unsafe_allow_html=True)
 # ROCKET SEND-OFF SECTION
 # --------------------------------------------------------------------------
 st.markdown(
-    '''
+    """
     <div class="rocket-section">
         <div class="rocket-visual">🚀</div>
+
         <div class="rocket-message">
             <h3>To every future student...</h3>
+
             <p>
-            Every expert was once a beginner. Every big score started with one small step,
-            one practice problem, one "aha" moment. Keep showing up, keep asking questions,
-            and trust the process - you're capable of more than you know. The sky isn't the
-            limit; it's just the launch pad. 🌟
+                Every expert was once a beginner. Every big score started with
+                one small step, one practice problem, and one “aha” moment.
+                Keep showing up, keep asking questions, and trust the process.
+                You’re capable of more than you know. The sky isn’t the limit;
+                it’s just the launch pad. 🌟
             </p>
         </div>
     </div>
-    ''',
+    """,
     unsafe_allow_html=True,
 )
 
+# --------------------------------------------------------------------------
+# FOOTER
+# --------------------------------------------------------------------------
 st.markdown(
-    '<div class="footer-note">SAT Math Resource Hub · Built for focused, guided review</div>',
+    """
+    <div class="footer-note">
+        SAT Math Resource Hub · Built for focused, guided review
+    </div>
+    """,
     unsafe_allow_html=True,
 )
