@@ -18,7 +18,9 @@ st.set_page_config(
 ASSETS = Path(__file__).parent / "assets"
 ROCKET_ICON = ASSETS / "rocket_icon.png"
 STUDY_GUIDE_PREVIEW = ASSETS / "study_guide_preview.png"
-STUDY_GUIDE_PDF = ASSETS / "SAT_Math_Study_Guide.pdf"
+
+# External link to the study guide PDF (hosted externally, opens in a new tab)
+STUDY_GUIDE_URL = "https://www.mometrix.com/academy/wp-content/uploads/2025/03/SAT-Math-Sheet-1.pdf"
 
 NAVY = "#0A1F44"
 GOLD = "#F5B700"
@@ -31,7 +33,6 @@ def img_to_base64(path: Path) -> str:
 
 ROCKET_B64 = img_to_base64(ROCKET_ICON)
 PREVIEW_B64 = img_to_base64(STUDY_GUIDE_PREVIEW)
-PDF_B64 = img_to_base64(STUDY_GUIDE_PDF)
 
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = False
@@ -438,11 +439,11 @@ with col1:
     st.markdown(
         f'''
         <div class="guide-card guide-link-wrap">
-            <a href="data:application/pdf;base64,{PDF_B64}" target="_blank">
+            <a href="{STUDY_GUIDE_URL}" target="_blank" rel="noopener noreferrer">
                 <img class="guide-thumb" src="data:image/png;base64,{PREVIEW_B64}" width="100%">
             </a>
             <br>
-            <a class="guide-open-btn" href="data:application/pdf;base64,{PDF_B64}" target="_blank">
+            <a class="guide-open-btn" href="{STUDY_GUIDE_URL}" target="_blank" rel="noopener noreferrer">
                 Open Full Study Guide
             </a>
         </div>
