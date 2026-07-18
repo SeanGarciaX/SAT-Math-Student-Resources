@@ -427,8 +427,8 @@ st.markdown(
     '''
     <div class="page-title-wrap">
         <div class="page-title"><span class="star">⭐</span> Testimonials</div>
-        <p class="page-subtitle">Every Success Story Starts with a Single Step.
-Read real stories from real students.</p>
+        <p class="page-subtitle">See What's Possible with the Right Support.
+Read Real Stories from Real Students.</p>
     </div>
     ''',
     unsafe_allow_html=True,
