@@ -154,6 +154,13 @@ st.markdown(
             display: none !important;
         }}
 
+        /* Hide Streamlit's auto-generated multipage nav (the "app" / "Testimonials" links
+           it creates automatically from the pages/ folder) - we use our own custom
+           sidebar links + button below instead */
+        div[data-testid="stSidebarNav"] {{
+            display: none !important;
+        }}
+
         {SIDEBAR_VISIBILITY_CSS}
 
         /* ---------- Header ---------- */
