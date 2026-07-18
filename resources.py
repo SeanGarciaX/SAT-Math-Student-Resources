@@ -45,6 +45,7 @@ VIDEO_LINKS = {
     ],
     "Functions": [
         ("Evaluating Functions in DESMOS", "https://www.youtube.com/watch?v=M9Uhvbe_chQ"),
+        ("Desmos Hacks", "https://www.youtube.com/watch?v=ZYDcmWtfLkk&t=77s"),
     ],
     "Right Triangles": [
         ("Special Right Triangles", "https://www.youtube.com/watch?v=6SC4JNSuBJQ"),
