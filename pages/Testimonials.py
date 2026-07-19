@@ -292,13 +292,13 @@ st.markdown(
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 50px;
-            padding: 40px 20px 20px 20px;
+            gap: 80px;
+            padding: 70px 20px 40px 20px;
         }}
 
         .cloud-container {{
-            width: 240px;
-            height: 170px;
+            width: 460px;
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -388,7 +388,7 @@ st.markdown(
         .rocket-visual {{
             font-size: 70px;
             animation: float-rocket 2.6s ease-in-out infinite;
-            margin-right: 100px;
+            margin-right: 12px;
         }}
 
         @keyframes float-rocket {{
