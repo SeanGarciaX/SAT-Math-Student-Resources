@@ -52,9 +52,9 @@ PRACTICE_TEST_LINKS = {
     },
 
     10: {
-        "Module_1": "Coming Soon",
-        "Module_2_HD": "Coming Soon",
-        "Module_2_LD": "Coming Soon",
+        "Module_1": "https://drive.google.com/file/d/1ksQoZcQ1QNaUaUqqUp7yubWWXKPiJwWA/view?usp=drive_link",
+        "Module_2_HD": "https://drive.google.com/file/d/1gzLR5xYeau0IjUor3LUJsRX0507SNks-/view?usp=drive_link",
+        "Module_2_LD": "https://drive.google.com/file/d/1pJ9bX3zZejuoPfngBthBqLnF5PLKLX7G/view?usp=drive_link",
     },
     
 }
