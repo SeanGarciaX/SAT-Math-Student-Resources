@@ -205,7 +205,7 @@ st.markdown(
         /* ---------- Page title ---------- */
         .page-title-wrap {{
             text-align: center;
-            margin: 28px 0 10px 0;
+            margin: 18px 0 2px 0;
         }}
 
         .page-title {{
@@ -290,47 +290,46 @@ st.markdown(
         /* ---------- Cloud grid ---------- */
         .cloud-field {{
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             justify-items: center;
             align-items: start;
-            gap: 60px 40px;
-            max-width: 1000px;
+            gap: 36px 28px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 40px 20px 40px 20px;
+            padding: 12px 20px 30px 20px;
         }}
 
         .cloud-container {{
             width: 100%;
-            max-width: 440px;
+            max-width: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 0;
         }}
 
         .cloud {{
             position: relative;
             width: 100%;
-            max-width: 400px;
-            min-height: 220px;
+            max-width: 300px;
+            height: 210px;
             box-sizing: border-box;
-            padding: 26% 15% 18% 15%;
+            padding: 26% 15% 16% 15%;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 130'%3E%3Cg fill='%23ffffff'%3E%3Crect x='18' y='55' width='164' height='62' rx='31'/%3E%3Cellipse cx='52' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='100' cy='36' rx='48' ry='42'/%3E%3Cellipse cx='148' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='26' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='174' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='75' cy='95' rx='24' ry='20'/%3E%3Cellipse cx='125' cy='95' rx='24' ry='20'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 100% 100%;
             background-repeat: no-repeat;
-            filter: drop-shadow(0 8px 14px rgba(10, 31, 68, 0.20));
+            filter: drop-shadow(0 6px 12px rgba(10, 31, 68, 0.18));
             display: flex;
             align-items: center;
             justify-content: center;
             transition:
-                transform 0.3s ease,
-                filter 0.3s ease;
+                transform 0.2s ease,
+                filter 0.2s ease;
             cursor: pointer;
         }}
 
         .cloud:hover {{
-            transform: scale(1.04);
-            filter: drop-shadow(0 12px 20px rgba(10, 31, 68, 0.28));
+            transform: translateY(-7px);
+            filter: drop-shadow(0 12px 18px rgba(10, 31, 68, 0.26));
         }}
 
         .cloud-text {{
@@ -338,19 +337,23 @@ st.markdown(
             z-index: 5;
             width: 100%;
             text-align: center;
-            color: #5A6B87;
-            font-size: 13px;
+            color: #3E4C64;
+            font-size: 12.5px;
             font-style: italic;
-            line-height: 1.4;
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }}
 
         .cloud-name {{
             position: relative;
             z-index: 5;
             display: block;
-            margin-top: 6px;
+            margin-top: 8px;
             color: {NAVY};
-            font-size: 12.5px;
+            font-size: 13.5px;
             font-weight: 700;
             font-style: normal;
         }}
@@ -359,7 +362,7 @@ st.markdown(
         .rocket-section {{
             background-color: {NAVY};
             border-radius: 16px;
-            margin: 50px auto 30px auto;
+            margin: 26px auto 24px auto;
             padding: 40px 30px;
             display: flex;
             align-items: center;
@@ -413,7 +416,7 @@ st.markdown(
             text-align: center;
             color: #8A93A6;
             font-size: 12.5px;
-            margin-top: 30px;
+            margin-top: 18px;
             padding-bottom: 20px;
         }}
 
@@ -441,20 +444,9 @@ st.markdown(
             }}
 
             .cloud-field {{
-                grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px 20px;
                 padding-left: 0;
                 padding-right: 0;
-            }}
-
-            .cloud-container {{
-                max-width: 320px;
-            }}
-
-            .cloud {{
-                max-width: 300px;
-                min-height: 190px;
-                padding: 28% 16% 20% 16%;
             }}
         }}
     </style>
