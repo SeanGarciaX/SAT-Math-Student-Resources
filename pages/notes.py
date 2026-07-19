@@ -40,30 +40,24 @@ def toggle_sidebar() -> None:
 
 
 # --------------------------------------------------------------------------
-# UPLOADED NOTES STATE
+# WORKBOOK SOLUTIONS (static PDFs bundled in the repo)
 #
-# Streamlit's file_uploader widget does not keep files across page
-# navigation on its own, so uploaded PDFs are copied into session_state
-# once so they persist for the rest of this browser session. This is
-# per-visitor / per-session only - it does not persist across app
-# restarts or between different visitors. Wiring up permanent storage
-# (e.g. committing files to the repo, or a cloud storage bucket) would
-# be a separate follow-up if notes need to stay available to everyone.
+# PDFs live in assets/workbook_solutions/, one file per module, using the
+# naming pattern: Practice_Test_{n}_{module_suffix}.pdf
+#
+# To add a new test's solutions later: just drop matching-named PDF files
+# into that folder and they'll appear automatically - no code changes
+# needed. Any module file that doesn't exist yet is shown as a
+# "Coming Soon" placeholder instead of a download button.
 # --------------------------------------------------------------------------
-if "uploaded_notes" not in st.session_state:
-    st.session_state.uploaded_notes = []
+WORKBOOK_DIR = ASSETS / "workbook_solutions"
 
-# --------------------------------------------------------------------------
-# PLACEHOLDER "COMING SOON" TOPICS
-# Replace / remove entries here as real PDFs get uploaded for each topic.
-# --------------------------------------------------------------------------
-NOTE_TOPICS = [
-    "Linear Equations",
-    "Quadratic Equations",
-    "Exponential Functions",
-    "Systems of Equations",
-    "Trigonometry",
-    "Probability & Statistics",
+PRACTICE_TEST_NUMBERS = [4, 5, 6, 7, 8, 9, 10]
+
+MODULE_SPECS = [
+    {"label": "Module 1", "suffix": "Module_1"},
+    {"label": "Module 2 (Higher Difficulty)", "suffix": "Module_2_HD"},
+    {"label": "Module 2 (Lower Difficulty)", "suffix": "Module_2_LD"},
 ]
 
 # --------------------------------------------------------------------------
@@ -401,7 +395,7 @@ st.markdown(
     <div class="page-title-wrap">
         <div class="page-title">📝🗒️ Notes</div>
         <p class="page-subtitle">
-            Downloadable PDF notes for every topic, all in one place.
+            Practice test solutions, worked out step by step.
         </p>
     </div>
     """,
@@ -409,79 +403,34 @@ st.markdown(
 )
 
 # --------------------------------------------------------------------------
-# UPLOAD NEW NOTES
+# PRACTICE TEST SOLUTIONS
 # --------------------------------------------------------------------------
 st.markdown(
-    '<span class="notes-section-title">📥 Upload Notes</span>',
+    '<span class="notes-section-title">📚 Practice Test Solutions</span>',
     unsafe_allow_html=True,
 )
 st.write("")
 
-new_uploads = st.file_uploader(
-    "Upload PDF notes",
-    type=["pdf"],
-    accept_multiple_files=True,
-    key="notes_uploader",
-    label_visibility="collapsed",
-)
-
-if new_uploads:
-    existing_names = {note["name"] for note in st.session_state.uploaded_notes}
-    for uploaded_file in new_uploads:
-        if uploaded_file.name not in existing_names:
-            st.session_state.uploaded_notes.append(
-                {"name": uploaded_file.name, "data": uploaded_file.getvalue()}
-            )
-            existing_names.add(uploaded_file.name)
-
-# --------------------------------------------------------------------------
-# AVAILABLE (UPLOADED) NOTES
-# --------------------------------------------------------------------------
-st.markdown(
-    '<span class="notes-section-title">📚 Available Notes</span>',
-    unsafe_allow_html=True,
-)
-st.write("")
-
-if st.session_state.uploaded_notes:
-    note_cols = st.columns(3)
-    for i, note in enumerate(st.session_state.uploaded_notes):
-        with note_cols[i % 3]:
-            with st.container(border=True):
-                st.markdown(f"**📄 {note['name']}**")
-                st.download_button(
-                    "Download PDF",
-                    data=note["data"],
-                    file_name=note["name"],
-                    mime="application/pdf",
-                    key=f"download_note_{i}",
-                    use_container_width=True,
-                )
-                if st.button(
-                    "Remove",
-                    key=f"remove_note_{i}",
-                    use_container_width=True,
-                ):
-                    st.session_state.uploaded_notes.pop(i)
-                    st.rerun()
-else:
-    st.caption("No notes uploaded yet. Use the uploader above to add PDF notes.")
-
-# --------------------------------------------------------------------------
-# COMING SOON / PLACEHOLDER TOPICS
-# --------------------------------------------------------------------------
-st.markdown(
-    '<span class="notes-section-title">🗂️ Coming Soon</span>',
-    unsafe_allow_html=True,
-)
-st.write("")
-
-placeholder_cols = st.columns(3)
-for i, topic in enumerate(NOTE_TOPICS):
-    with placeholder_cols[i % 3]:
-        with st.container(border=True):
-            st.markdown(f"**{topic}**")
-            st.caption("Placeholder — insert PDF notes here.")
+for test_number in PRACTICE_TEST_NUMBERS:
+    with st.container(border=True):
+        st.markdown(f"### Practice Test #{test_number}")
+        module_cols = st.columns(3)
+        for col, module in zip(module_cols, MODULE_SPECS):
+            filename = f"Practice_Test_{test_number}_{module['suffix']}.pdf"
+            filepath = WORKBOOK_DIR / filename
+            with col:
+                st.markdown(f"**{module['label']}**")
+                if filepath.exists():
+                    st.download_button(
+                        "📄 Download PDF",
+                        data=filepath.read_bytes(),
+                        file_name=filename,
+                        mime="application/pdf",
+                        key=f"download_{test_number}_{module['suffix']}",
+                        use_container_width=True,
+                    )
+                else:
+                    st.caption("🚧 Coming Soon 🚧")
 
 # --------------------------------------------------------------------------
 # FOOTER
