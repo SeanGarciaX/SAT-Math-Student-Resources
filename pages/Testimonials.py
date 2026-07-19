@@ -358,6 +358,99 @@ st.markdown(
             font-style: normal;
         }}
 
+        /* ---------- Cloud modal (click a cloud to enlarge it) ---------- */
+        .cloud-link {{
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }}
+
+        .cloud-modal-overlay {{
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition:
+                opacity 0.28s ease,
+                visibility 0.28s ease;
+        }}
+
+        .cloud-modal-overlay:target {{
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }}
+
+        .cloud-modal-backdrop {{
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: rgba(10, 31, 68, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }}
+
+        .cloud-modal-content {{
+            position: relative;
+            z-index: 2;
+            padding: 40px 18px;
+            transform: scale(0.82);
+            transition: transform 0.28s ease;
+        }}
+
+        .cloud-modal-overlay:target .cloud-modal-content {{
+            transform: scale(1);
+        }}
+
+        .cloud-modal-close {{
+            position: absolute;
+            top: 6px;
+            right: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: {NAVY};
+            color: {GOLD};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+        }}
+
+        .cloud.enlarged {{
+            width: min(92vw, 560px);
+            height: auto;
+            min-height: 320px;
+            padding: 18% 12% 12% 12%;
+            cursor: default;
+        }}
+
+        .cloud.enlarged:hover {{
+            transform: none;
+        }}
+
+        .cloud.enlarged .cloud-text {{
+            font-size: 15px;
+            line-height: 1.7;
+            display: block;
+            -webkit-line-clamp: unset;
+            overflow: visible;
+        }}
+
+        .cloud.enlarged .cloud-name {{
+            font-size: 15px;
+            margin-top: 16px;
+        }}
+
         /* ---------- Rocket send-off section ---------- */
         .rocket-section {{
             background-color: {NAVY};
@@ -539,15 +632,22 @@ st.markdown(
 )
 
 # --------------------------------------------------------------------------
-# CLOUD TESTIMONIALS
+# CLOUD TESTIMONIALS + CLICK-TO-ENLARGE MODALS
 #
-# Built as one single-line-per-tag HTML string with no blank lines between
-# cloud containers, so the whole grid stays inside one continuous HTML
-# block instead of breaking into literal text after the first cloud.
+# Each cloud is a link to a hidden full-screen overlay (id="testimonial-N").
+# The overlay uses the CSS :target pseudo-class to animate in/out, so no
+# JavaScript is required. Everything is built as one concatenated string
+# with no blank lines, since Streamlit's Markdown renderer ends an HTML
+# block at the first blank line it encounters.
 # --------------------------------------------------------------------------
 cloud_blocks = []
-for testimonial in TESTIMONIALS:
+modal_blocks = []
+
+for idx, testimonial in enumerate(TESTIMONIALS):
+    modal_id = f"testimonial-{idx}"
+
     cloud_blocks.append(
+        f'<a href="#{modal_id}" class="cloud-link">'
         '<div class="cloud-container">'
         '<div class="cloud">'
         '<div class="cloud-text">'
@@ -558,9 +658,32 @@ for testimonial in TESTIMONIALS:
         "</div>"
         "</div>"
         "</div>"
+        "</a>"
     )
 
-clouds_html = '<div class="cloud-field">' + "".join(cloud_blocks) + "</div>"
+    modal_blocks.append(
+        f'<div class="cloud-modal-overlay" id="{modal_id}">'
+        '<a href="#" class="cloud-modal-backdrop" aria-label="Close testimonial"></a>'
+        '<div class="cloud-modal-content">'
+        '<a href="#" class="cloud-modal-close" aria-label="Close testimonial">✕</a>'
+        '<div class="cloud enlarged">'
+        '<div class="cloud-text">'
+        f'“{testimonial["text"]}”'
+        '<span class="cloud-name">'
+        f'— {testimonial["name"]}'
+        "</span>"
+        "</div>"
+        "</div>"
+        "</div>"
+        "</div>"
+    )
+
+clouds_html = (
+    '<div class="cloud-field">'
+    + "".join(cloud_blocks)
+    + "</div>"
+    + "".join(modal_blocks)
+)
 
 st.markdown(clouds_html, unsafe_allow_html=True)
 
