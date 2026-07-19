@@ -431,10 +431,10 @@ st.markdown(
 
         .cloud.enlarged {{
             width: fit-content;
-            max-width: min(90vw, 760px);
+            max-width: min(90vw, 900px);
             min-width: 300px;
             height: auto;
-            min-height: 240px;
+            min-height: 360px;
             padding: 82px 80px 66px 80px;
             cursor: default;
         }}
