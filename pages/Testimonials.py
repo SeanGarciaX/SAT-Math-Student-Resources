@@ -431,6 +431,7 @@ st.markdown(
 
         .cloud.enlarged {{
             width: min(92vw, 760px);
+            max-width: 760px;
             height: auto;
             min-height: 260px;
             padding: 70px 56px 52px 56px;
