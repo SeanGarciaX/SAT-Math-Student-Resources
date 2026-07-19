@@ -293,16 +293,16 @@ st.markdown(
             grid-template-columns: repeat(2, 1fr);
             justify-items: center;
             align-items: start;
-            gap: 90px 50px;
-            max-width: 1080px;
+            gap: 60px 40px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 70px 20px 40px 20px;
+            padding: 40px 20px 40px 20px;
         }}
 
         .cloud-container {{
             width: 100%;
-            max-width: 480px;
-            height: 430px;
+            max-width: 440px;
+            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -311,59 +311,29 @@ st.markdown(
         .cloud {{
             position: relative;
             width: 400px;
-            height: 250px;
-            background: #FFFFFF;
-            border-radius: 60px;
-            box-shadow: 0 6px 16px rgba(10, 31, 68, 0.12);
+            height: 260px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 130'%3E%3Cg fill='%23ffffff'%3E%3Crect x='18' y='55' width='164' height='62' rx='31'/%3E%3Cellipse cx='52' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='100' cy='36' rx='48' ry='42'/%3E%3Cellipse cx='148' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='26' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='174' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='75' cy='95' rx='24' ry='20'/%3E%3Cellipse cx='125' cy='95' rx='24' ry='20'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 8px 14px rgba(10, 31, 68, 0.20));
             display: flex;
             align-items: center;
             justify-content: center;
             transition:
                 transform 0.3s ease,
-                box-shadow 0.3s ease;
+                filter 0.3s ease;
             cursor: pointer;
         }}
 
-        .cloud::before {{
-            content: "";
-            position: absolute;
-            top: -55px;
-            left: 25px;
-            width: 90px;
-            height: 90px;
-            background: #FFFFFF;
-            border-radius: 50%;
-            box-shadow:
-                75px -25px 0 8px #FFFFFF,
-                160px 5px 0 -8px #FFFFFF,
-                235px -30px 0 10px #FFFFFF,
-                300px 0px 0 -12px #FFFFFF;
-        }}
-
-        .cloud::after {{
-            content: "";
-            position: absolute;
-            bottom: -20px;
-            left: 55px;
-            width: 60px;
-            height: 60px;
-            background: #FFFFFF;
-            border-radius: 50%;
-            box-shadow:
-                110px 8px 0 -6px #FFFFFF,
-                200px -8px 0 4px #FFFFFF,
-                280px 6px 0 -10px #FFFFFF;
-        }}
-
         .cloud:hover {{
-            transform: scale(1.1);
-            box-shadow: 0 10px 24px rgba(10, 31, 68, 0.2);
+            transform: scale(1.06);
+            filter: drop-shadow(0 12px 20px rgba(10, 31, 68, 0.28));
         }}
 
         .cloud-text {{
             position: relative;
             z-index: 5;
-            width: 78%;
+            width: 70%;
             text-align: center;
             color: #5A6B87;
             font-size: 13px;
@@ -469,19 +439,19 @@ st.markdown(
 
             .cloud-field {{
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 40px;
                 padding-left: 0;
                 padding-right: 0;
             }}
 
             .cloud-container {{
-                max-width: 340px;
-                height: 380px;
+                max-width: 320px;
+                height: 230px;
             }}
 
             .cloud {{
                 width: 300px;
-                height: 220px;
+                height: 196px;
             }}
         }}
     </style>
