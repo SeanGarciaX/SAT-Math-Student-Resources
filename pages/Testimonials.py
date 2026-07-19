@@ -388,7 +388,7 @@ st.markdown(
         .rocket-visual {{
             font-size: 70px;
             animation: float-rocket 2.6s ease-in-out infinite;
-            margin-right: 1000px;
+            margin-right: 100px;
         }}
 
         @keyframes float-rocket {{
