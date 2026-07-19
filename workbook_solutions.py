@@ -32,4 +32,29 @@ PRACTICE_TEST_LINKS = {
         "Module_2_HD": "https://drive.google.com/file/d/1WfVjv1GzO0z0FEc0ugpRJlWyGFCZ07j9/view?usp=drive_link",
         "Module_2_LD": "https://drive.google.com/file/d/11nDDlsv89UCvrgpCbuLzt68Y0Ex2CU0_/view?usp=drive_link",
     },
+
+    7: {
+        "Module_1": "https://drive.google.com/file/d/1lp1RsGWfC7-DRcyyzE5kQpuUuNd4jfCC/view?usp=drive_link",
+        "Module_2_HD": "https://drive.google.com/file/d/13jhGU7dvX3I1DVNz8v41XZ8pfZCkfQaf/view?usp=drive_link",
+        "Module_2_LD": "Coming Soon",
+    },
+
+    8: {
+        "Module_1": "Coming Soon",
+        "Module_2_HD": "Coming Soon",
+        "Module_2_LD": "Coming Soon",
+    },
+
+    9: {
+        "Module_1": "Comming Soon",
+        "Module_2_HD": "Coming Soon",
+        "Module_2_LD": "Coming Soon",
+    },
+
+    10: {
+        "Module_1": "Coming Soon",
+        "Module_2_HD": "Coming Soon",
+        "Module_2_LD": "Coming Soon",
+    },
+    
 }
