@@ -498,6 +498,12 @@ st.button(
 
 # --------------------------------------------------------------------------
 # HEADER
+#
+# NOTE: This HTML block must not contain any blank lines. Streamlit's
+# Markdown renderer treats a blank line inside a <div>...</div> block as
+# the end of the HTML block; anything after it then gets parsed as a
+# regular Markdown paragraph/indented-code block instead of HTML, which
+# is why tags were showing up as literal text before.
 # --------------------------------------------------------------------------
 if ROCKET_B64:
     header_icon_html = (
@@ -513,7 +519,6 @@ st.markdown(
     f"""
     <div class="site-header">
         <div>{header_icon_html}</div>
-
         <div>
             <p class="site-title">SAT Math Resource Hub</p>
             <p class="site-subtitle">
@@ -534,7 +539,6 @@ st.markdown(
         <div class="page-title">
             <span class="star">⭐</span> Testimonials
         </div>
-
         <p class="page-subtitle">
             See What’s Possible with the Right Support.<br>
             Read Real Stories from Real Students.
@@ -546,24 +550,27 @@ st.markdown(
 
 # --------------------------------------------------------------------------
 # CLOUD TESTIMONIALS
+#
+# Built as one single-line-per-tag HTML string with no blank lines between
+# cloud containers, so the whole grid stays inside one continuous HTML
+# block instead of breaking into literal text after the first cloud.
 # --------------------------------------------------------------------------
-clouds_html = '<div class="cloud-field">'
-
+cloud_blocks = []
 for testimonial in TESTIMONIALS:
-    clouds_html += f"""
-        <div class="cloud-container">
-            <div class="cloud">
-                <div class="cloud-text">
-                    “{testimonial["text"]}”
-                    <span class="cloud-name">
-                        — {testimonial["name"]}
-                    </span>
-                </div>
-            </div>
-        </div>
-    """
+    cloud_blocks.append(
+        '<div class="cloud-container">'
+        '<div class="cloud">'
+        '<div class="cloud-text">'
+        f'“{testimonial["text"]}”'
+        '<span class="cloud-name">'
+        f'— {testimonial["name"]}'
+        "</span>"
+        "</div>"
+        "</div>"
+        "</div>"
+    )
 
-clouds_html += "</div>"
+clouds_html = '<div class="cloud-field">' + "".join(cloud_blocks) + "</div>"
 
 st.markdown(clouds_html, unsafe_allow_html=True)
 
@@ -574,10 +581,8 @@ st.markdown(
     """
     <div class="rocket-section">
         <div class="rocket-visual">🚀</div>
-
         <div class="rocket-message">
             <h3>To every future student...</h3>
-
             <p>
                 Every expert was once a beginner. Every big score started with
                 one small step, one practice problem, and one “aha” moment.
