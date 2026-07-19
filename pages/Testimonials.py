@@ -430,11 +430,12 @@ st.markdown(
         }}
 
         .cloud.enlarged {{
-            width: min(92vw, 760px);
-            max-width: 760px;
+            width: fit-content;
+            max-width: min(92vw, 760px);
+            min-width: 320px;
             height: auto;
             min-height: 260px;
-            padding: 70px 56px 52px 56px;
+            padding: 84px 64px 60px 64px;
             cursor: default;
         }}
 
@@ -443,8 +444,10 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-text {{
-            font-size: 8px;
-            line-height: 1.5;
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.7;
             display: block;
             -webkit-line-clamp: unset;
             overflow: visible;
@@ -453,8 +456,8 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-name {{
-            font-size: 8.5px;
-            margin-top: 12px;
+            font-size: 16px;
+            margin-top: 18px;
         }}
 
         /* ---------- Rocket send-off section ---------- */
