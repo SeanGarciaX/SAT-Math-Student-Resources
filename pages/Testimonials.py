@@ -45,7 +45,7 @@ def toggle_sidebar() -> None:
 # --------------------------------------------------------------------------
 TESTIMONIALS = [
     {
-        "name": "Alexis Class of 26'",
+        "name": "Alexis Class of 26",
         "text": "Sean is a really knowledgeable and patient tutor. He made me feel comfortable asking questions and created a great learning environment. He made SAT Math a lot easier to understand and always explained problems in different ways until I finally got it. You can tell he really knows the material and cares about helping his students succeed. I would definitely recommend Sean to anyone studying for the SAT because I think you'll see a big improvement in your score.
   ",
     },
