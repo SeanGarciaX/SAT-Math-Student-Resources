@@ -431,10 +431,10 @@ st.markdown(
 
         .cloud.enlarged {{
             width: fit-content;
-            max-width: min(90vw, 1200px);
-            min-width: 600px;
+            max-width: min(90vw, 760px);
+            min-width: 300px;
             height: auto;
-            min-height: 360px;
+            min-height: 240px;
             padding: 82px 80px 66px 80px;
             cursor: default;
         }}
@@ -573,6 +573,9 @@ with st.sidebar:
         '<a class="sidebar-link active" href="#">⭐ Testimonials</a>',
         unsafe_allow_html=True,
     )
+
+    if st.button("📝🗒️ Notes", key="nav_notes_btn"):
+        st.switch_page("pages/Notes.py")
 
     st.markdown("---")
     st.caption(
