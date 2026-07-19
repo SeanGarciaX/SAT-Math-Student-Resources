@@ -284,6 +284,31 @@ st.markdown(
             box-shadow: 0 1px 6px rgba(10, 31, 68, 0.08);
         }}
 
+        /*
+        Force text color inside note cards regardless of the viewer's
+        light/dark theme setting - without this, Streamlit's default
+        text color follows the theme, and on dark mode that renders
+        light/white text on our white card background (invisible).
+        */
+        div[data-testid="stVerticalBlockBorderWrapper"] h1,
+        div[data-testid="stVerticalBlockBorderWrapper"] h2,
+        div[data-testid="stVerticalBlockBorderWrapper"] h3,
+        div[data-testid="stVerticalBlockBorderWrapper"] p,
+        div[data-testid="stVerticalBlockBorderWrapper"] span,
+        div[data-testid="stVerticalBlockBorderWrapper"] label {{
+            color: {NAVY} !important;
+        }}
+
+        div[data-testid="stVerticalBlockBorderWrapper"] h3 {{
+            color: {NAVY} !important;
+            font-weight: 700;
+        }}
+
+        div[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stCaptionContainer"],
+        div[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stCaptionContainer"] * {{
+            color: #5A6B87 !important;
+        }}
+
         .footer-note {{
             text-align: center;
             color: #8A93A6;
