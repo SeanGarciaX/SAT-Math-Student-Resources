@@ -216,6 +216,28 @@ st.markdown(
             padding-bottom: 4px;
         }}
 
+        .practice-test-title {{
+            color: {NAVY} !important;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 4px 0 16px 0;
+        }}
+
+        .module-label {{
+            color: {NAVY} !important;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }}
+
+        .coming-soon-text {{
+            color: #5A6B87 !important;
+            font-size: 13.5px;
+            text-align: center;
+            padding: 10px 0;
+            display: block;
+        }}
+
         /* ---------- Sidebar ---------- */
         section[data-testid="stSidebar"] {{
             background-color: {NAVY};
@@ -434,12 +456,18 @@ st.write("")
 
 for test_number in PRACTICE_TEST_NUMBERS:
     with st.container(border=True):
-        st.markdown(f"### Practice Test #{test_number}")
+        st.markdown(
+            f'<p class="practice-test-title">Practice Test #{test_number}</p>',
+            unsafe_allow_html=True,
+        )
         module_cols = st.columns(3)
         for col, module in zip(module_cols, MODULE_SPECS):
             url = PRACTICE_TEST_LINKS.get(test_number, {}).get(module["suffix"])
             with col:
-                st.markdown(f"**{module['label']}**")
+                st.markdown(
+                    f'<p class="module-label">{module["label"]}</p>',
+                    unsafe_allow_html=True,
+                )
                 if url:
                     st.link_button(
                         "📄 Open PDF",
@@ -447,7 +475,10 @@ for test_number in PRACTICE_TEST_NUMBERS:
                         use_container_width=True,
                     )
                 else:
-                    st.caption("🚧 Coming Soon 🚧")
+                    st.markdown(
+                        '<span class="coming-soon-text">🚧 Coming Soon 🚧</span>',
+                        unsafe_allow_html=True,
+                    )
 
 # --------------------------------------------------------------------------
 # FOOTER
