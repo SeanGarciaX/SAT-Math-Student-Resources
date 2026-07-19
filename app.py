@@ -389,6 +389,8 @@ with st.sidebar:
     )
     if st.button("⭐ Testimonials", key="nav_testimonials_btn"):
         st.switch_page("pages/Testimonials.py")
+    if st.button("📝🗒️ Notes", key="nav_notes_btn"):
+        st.switch_page("pages/Notes.py")
     st.markdown("---")
     st.caption("Use the arrow button in the top-left corner to open or close this menu.")
 
