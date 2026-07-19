@@ -575,7 +575,7 @@ with st.sidebar:
     )
 
     if st.button("📝🗒️ Notes", key="nav_notes_btn"):
-        st.switch_page("pages/Notes.py")
+        st.switch_page("pages/notes.py")
 
     st.markdown("---")
     st.caption(
