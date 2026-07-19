@@ -390,14 +390,17 @@ st.markdown(
             position: absolute;
             inset: 0;
             z-index: 1;
-            background: rgba(10, 31, 68, 0.55);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            background: rgba(8, 20, 45, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }}
 
         .cloud-modal-content {{
             position: relative;
             z-index: 2;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
             padding: 40px 18px;
             transform: scale(0.82);
             transition: transform 0.28s ease;
@@ -408,11 +411,11 @@ st.markdown(
         }}
 
         .cloud-modal-close {{
-            position: absolute;
-            top: 6px;
-            right: 0;
-            width: 34px;
-            height: 34px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: {NAVY};
             color: {GOLD};
@@ -420,17 +423,17 @@ st.markdown(
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             z-index: 3;
         }}
 
         .cloud.enlarged {{
-            width: min(92vw, 560px);
+            width: min(92vw, 760px);
             height: auto;
-            min-height: 320px;
-            padding: 18% 12% 12% 12%;
+            min-height: 260px;
+            padding: 70px 56px 52px 56px;
             cursor: default;
         }}
 
@@ -440,15 +443,17 @@ st.markdown(
 
         .cloud.enlarged .cloud-text {{
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.75;
             display: block;
             -webkit-line-clamp: unset;
             overflow: visible;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }}
 
         .cloud.enlarged .cloud-name {{
             font-size: 15px;
-            margin-top: 16px;
+            margin-top: 18px;
         }}
 
         /* ---------- Rocket send-off section ---------- */
@@ -639,29 +644,22 @@ st.markdown(
 # JavaScript is required. Everything is built as one concatenated string
 # with no blank lines, since Streamlit's Markdown renderer ends an HTML
 # block at the first blank line it encounters.
+#
+# Each modal is placed in the DOM immediately BEFORE its matching card.
+# Because the modal is position:fixed (out of normal flow), it isn't
+# counted as a grid item, so the visual 2-column grid order is unaffected.
+# This ordering lets a plain CSS sibling selector (~) target "the specific
+# source card whose modal is currently open" and fade it out, so the
+# original small card doesn't show duplicate text behind the enlarged one.
 # --------------------------------------------------------------------------
 cloud_blocks = []
-modal_blocks = []
+hide_source_rules = []
 
 for idx, testimonial in enumerate(TESTIMONIALS):
     modal_id = f"testimonial-{idx}"
+    source_class = f"cloud-source-{idx}"
 
-    cloud_blocks.append(
-        f'<a href="#{modal_id}" class="cloud-link">'
-        '<div class="cloud-container">'
-        '<div class="cloud">'
-        '<div class="cloud-text">'
-        f'“{testimonial["text"]}”'
-        '<span class="cloud-name">'
-        f'— {testimonial["name"]}'
-        "</span>"
-        "</div>"
-        "</div>"
-        "</div>"
-        "</a>"
-    )
-
-    modal_blocks.append(
+    modal_html = (
         f'<div class="cloud-modal-overlay" id="{modal_id}">'
         '<a href="#" class="cloud-modal-backdrop" aria-label="Close testimonial"></a>'
         '<div class="cloud-modal-content">'
@@ -678,11 +676,38 @@ for idx, testimonial in enumerate(TESTIMONIALS):
         "</div>"
     )
 
+    card_html = (
+        f'<a href="#{modal_id}" class="cloud-link {source_class}">'
+        '<div class="cloud-container">'
+        '<div class="cloud">'
+        '<div class="cloud-text">'
+        f'“{testimonial["text"]}”'
+        '<span class="cloud-name">'
+        f'— {testimonial["name"]}'
+        "</span>"
+        "</div>"
+        "</div>"
+        "</div>"
+        "</a>"
+    )
+
+    cloud_blocks.append(modal_html + card_html)
+
+    hide_source_rules.append(
+        f"#{modal_id}:target ~ .{source_class} {{ "
+        "opacity: 0; visibility: hidden; transition: opacity 0.2s ease; "
+        "}}"
+    )
+
+hide_source_css = (
+    '<style>' + "".join(hide_source_rules) + '</style>'
+)
+
 clouds_html = (
-    '<div class="cloud-field">'
+    hide_source_css
+    + '<div class="cloud-field">'
     + "".join(cloud_blocks)
     + "</div>"
-    + "".join(modal_blocks)
 )
 
 st.markdown(clouds_html, unsafe_allow_html=True)
