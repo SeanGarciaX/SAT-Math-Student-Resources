@@ -41,6 +41,24 @@ if "sidebar_open" not in st.session_state:
 def toggle_sidebar():
     st.session_state.sidebar_open = not st.session_state.sidebar_open
 
+
+def safe_switch_page(page_path: str) -> None:
+    """
+    Navigate to another page. If the target page file hasn't been added
+    to the repo yet (or the filename case doesn't match, which matters
+    on Streamlit Cloud's case-sensitive Linux deployment), show a
+    friendly message instead of letting the whole app crash with a
+    StreamlitAPIException.
+    """
+    try:
+        st.switch_page(page_path)
+    except Exception:
+        st.error(
+            f"Couldn't open `{page_path}`. Double-check that this exact "
+            "file (matching case) has been added to your repo's `pages/` "
+            "folder and committed/deployed."
+        )
+
 # --------------------------------------------------------------------------
 # TOPIC LIST
 # --------------------------------------------------------------------------
@@ -388,9 +406,9 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
     if st.button("⭐ Testimonials", key="nav_testimonials_btn"):
-        st.switch_page("pages/Testimonials.py")
+        safe_switch_page("pages/Testimonials.py")
     if st.button("📝🗒️ Notes", key="nav_notes_btn"):
-        st.switch_page("pages/Notes.py")
+        safe_switch_page("pages/Notes.py")
     st.markdown("---")
     st.caption("Use the arrow button in the top-left corner to open or close this menu.")
 
