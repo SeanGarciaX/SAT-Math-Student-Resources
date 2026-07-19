@@ -3,6 +3,8 @@ from pathlib import Path
 
 import streamlit as st
 
+from workbook_solutions import PRACTICE_TEST_LINKS
+
 # --------------------------------------------------------------------------
 # PAGE CONFIG
 # --------------------------------------------------------------------------
@@ -40,18 +42,12 @@ def toggle_sidebar() -> None:
 
 
 # --------------------------------------------------------------------------
-# WORKBOOK SOLUTIONS (static PDFs bundled in the repo)
+# WORKBOOK SOLUTIONS PAGE LAYOUT
 #
-# PDFs live in assets/workbook_solutions/, one file per module, using the
-# naming pattern: Practice_Test_{n}_{module_suffix}.pdf
-#
-# To add a new test's solutions later: just drop matching-named PDF files
-# into that folder and they'll appear automatically - no code changes
-# needed. Any module file that doesn't exist yet is shown as a
-# "Coming Soon" placeholder instead of a download button.
+# PRACTICE_TEST_LINKS itself lives in workbook_solutions.py (imported
+# above) so the link data stays separate from this page's layout code.
+# Add a new test number here once its links are added there.
 # --------------------------------------------------------------------------
-WORKBOOK_DIR = ASSETS / "workbook_solutions"
-
 PRACTICE_TEST_NUMBERS = [4, 5, 6, 7, 8, 9, 10]
 
 MODULE_SPECS = [
@@ -416,17 +412,13 @@ for test_number in PRACTICE_TEST_NUMBERS:
         st.markdown(f"### Practice Test #{test_number}")
         module_cols = st.columns(3)
         for col, module in zip(module_cols, MODULE_SPECS):
-            filename = f"Practice_Test_{test_number}_{module['suffix']}.pdf"
-            filepath = WORKBOOK_DIR / filename
+            url = PRACTICE_TEST_LINKS.get(test_number, {}).get(module["suffix"])
             with col:
                 st.markdown(f"**{module['label']}**")
-                if filepath.exists():
-                    st.download_button(
-                        "📄 Download PDF",
-                        data=filepath.read_bytes(),
-                        file_name=filename,
-                        mime="application/pdf",
-                        key=f"download_{test_number}_{module['suffix']}",
+                if url:
+                    st.link_button(
+                        "📄 Open PDF",
+                        url,
                         use_container_width=True,
                     )
                 else:
