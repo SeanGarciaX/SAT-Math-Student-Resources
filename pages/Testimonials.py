@@ -431,11 +431,11 @@ st.markdown(
 
         .cloud.enlarged {{
             width: fit-content;
-            max-width: min(92vw, 760px);
-            min-width: 320px;
+            max-width: min(90vw, 760px);
+            min-width: 300px;
             height: auto;
-            min-height: 260px;
-            padding: 84px 64px 60px 64px;
+            min-height: 240px;
+            padding: 82px 80px 66px 80px;
             cursor: default;
         }}
 
@@ -444,7 +444,7 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-text {{
-            max-width: 560px;
+            max-width: 480px;
             margin: 0 auto;
             font-size: 14px;
             line-height: 1.7;
