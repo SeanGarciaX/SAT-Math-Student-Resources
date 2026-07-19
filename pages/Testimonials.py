@@ -443,8 +443,8 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-text {{
-            font-size: 15px;
-            line-height: 1.75;
+            font-size: 8px;
+            line-height: 1.5;
             display: block;
             -webkit-line-clamp: unset;
             overflow: visible;
@@ -453,8 +453,8 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-name {{
-            font-size: 15px;
-            margin-top: 18px;
+            font-size: 8.5px;
+            margin-top: 12px;
         }}
 
         /* ---------- Rocket send-off section ---------- */
