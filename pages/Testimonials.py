@@ -289,16 +289,20 @@ st.markdown(
 
         /* ---------- Cloud grid ---------- */
         .cloud-field {{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 80px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+            align-items: start;
+            gap: 90px 50px;
+            max-width: 1080px;
+            margin: 0 auto;
             padding: 70px 20px 40px 20px;
         }}
 
         .cloud-container {{
-            width: 460px;
-            height: 400px;
+            width: 100%;
+            max-width: 480px;
+            height: 430px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,10 +310,10 @@ st.markdown(
 
         .cloud {{
             position: relative;
-            width: 420px;
-            height: 330px;
+            width: 400px;
+            height: 250px;
             background: #FFFFFF;
-            border-radius: 100px;
+            border-radius: 60px;
             box-shadow: 0 6px 16px rgba(10, 31, 68, 0.12);
             display: flex;
             align-items: center;
@@ -323,23 +327,32 @@ st.markdown(
         .cloud::before {{
             content: "";
             position: absolute;
-            background: #FFFFFF;
-            border-radius: 100px;
-            width: 110px;
-            height: 110px;
             top: -55px;
-            left: 20px;
+            left: 25px;
+            width: 90px;
+            height: 90px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow:
+                75px -25px 0 8px #FFFFFF,
+                160px 5px 0 -8px #FFFFFF,
+                235px -30px 0 10px #FFFFFF,
+                300px 0px 0 -12px #FFFFFF;
         }}
 
         .cloud::after {{
             content: "";
             position: absolute;
+            bottom: -20px;
+            left: 55px;
+            width: 60px;
+            height: 60px;
             background: #FFFFFF;
-            border-radius: 100px;
-            width: 90px;
-            height: 90px;
-            top: -45px;
-            right: 25px;
+            border-radius: 50%;
+            box-shadow:
+                110px 8px 0 -6px #FFFFFF,
+                200px -8px 0 4px #FFFFFF,
+                280px 6px 0 -10px #FFFFFF;
         }}
 
         .cloud:hover {{
@@ -455,9 +468,20 @@ st.markdown(
             }}
 
             .cloud-field {{
-                gap: 38px;
+                grid-template-columns: 1fr;
+                gap: 60px;
                 padding-left: 0;
                 padding-right: 0;
+            }}
+
+            .cloud-container {{
+                max-width: 340px;
+                height: 380px;
+            }}
+
+            .cloud {{
+                width: 300px;
+                height: 220px;
             }}
         }}
     </style>
