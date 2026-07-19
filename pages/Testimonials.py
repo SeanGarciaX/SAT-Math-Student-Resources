@@ -297,8 +297,8 @@ st.markdown(
         }}
 
         .cloud-container {{
-            width: 640px;
-            height: 370px;
+            width: 240px;
+            height: 170px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,8 +306,8 @@ st.markdown(
 
         .cloud {{
             position: relative;
-            width: 220px;
-            height: 130px;
+            width: 420px;
+            height: 330px;
             background: #FFFFFF;
             border-radius: 100px;
             box-shadow: 0 6px 16px rgba(10, 31, 68, 0.12);
