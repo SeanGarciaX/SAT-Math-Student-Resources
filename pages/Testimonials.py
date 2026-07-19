@@ -302,16 +302,19 @@ st.markdown(
         .cloud-container {{
             width: 100%;
             max-width: 440px;
-            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 16px 0;
         }}
 
         .cloud {{
             position: relative;
-            width: 400px;
-            height: 260px;
+            width: 100%;
+            max-width: 400px;
+            min-height: 220px;
+            box-sizing: border-box;
+            padding: 26% 15% 18% 15%;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 130'%3E%3Cg fill='%23ffffff'%3E%3Crect x='18' y='55' width='164' height='62' rx='31'/%3E%3Cellipse cx='52' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='100' cy='36' rx='48' ry='42'/%3E%3Cellipse cx='148' cy='52' rx='40' ry='36'/%3E%3Cellipse cx='26' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='174' cy='82' rx='26' ry='24'/%3E%3Cellipse cx='75' cy='95' rx='24' ry='20'/%3E%3Cellipse cx='125' cy='95' rx='24' ry='20'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -326,14 +329,14 @@ st.markdown(
         }}
 
         .cloud:hover {{
-            transform: scale(1.06);
+            transform: scale(1.04);
             filter: drop-shadow(0 12px 20px rgba(10, 31, 68, 0.28));
         }}
 
         .cloud-text {{
             position: relative;
             z-index: 5;
-            width: 70%;
+            width: 100%;
             text-align: center;
             color: #5A6B87;
             font-size: 13px;
@@ -446,12 +449,12 @@ st.markdown(
 
             .cloud-container {{
                 max-width: 320px;
-                height: 230px;
             }}
 
             .cloud {{
-                width: 300px;
-                height: 196px;
+                max-width: 300px;
+                min-height: 190px;
+                padding: 28% 16% 20% 16%;
             }}
         }}
     </style>
