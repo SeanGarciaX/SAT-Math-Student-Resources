@@ -161,6 +161,9 @@ st.markdown(
         while tapping anywhere else closes it. Overrides the general
         toggle-button styling above with !important since both buttons
         share the same base "div[data-testid='stButton']" selector.
+        touch-action: pan-y allows vertical scroll gestures to pass
+        through as normal scrolling, while a stationary tap still
+        registers as a click that closes the sidebar.
         */
         .st-key-sidebar_close_overlay {{
             position: fixed !important;
@@ -170,6 +173,7 @@ st.markdown(
             width: 100vw !important;
             height: 100vh !important;
             z-index: 999990 !important;
+            touch-action: pan-y !important;
         }}
 
         .st-key-sidebar_close_overlay button {{
@@ -186,6 +190,7 @@ st.markdown(
             padding: 0 !important;
             margin: 0 !important;
             cursor: default !important;
+            touch-action: pan-y !important;
         }}
 
         .st-key-sidebar_close_overlay button:hover {{
@@ -454,7 +459,8 @@ st.button(
 # the arrow button, closing the sidebar. It's styled via the ".st-key-
 # sidebar_close_overlay" CSS class above to be invisible and cover the
 # full screen, sitting below the sidebar's own z-index so taps inside
-# the sidebar itself still work normally.
+# the sidebar itself still work normally, while still allowing vertical
+# scroll gestures to pass through.
 # --------------------------------------------------------------------------
 if st.session_state.sidebar_open:
     st.button(
