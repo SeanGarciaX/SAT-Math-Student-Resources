@@ -104,14 +104,7 @@ VIDEO_LINKS = {
 }
 EXAMPLE_PROBLEMS = {
     # "Topic Name": [("Worksheet Title", "https://link"), ...],
-    "Equivalent Expressions": [
-        ("One-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/One-Step%20Equations.pdf"),
-        ("Two-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Two-Step%20Equations.pdf"),
-        ("Multi-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Multi-Step%20Equations.pdf"), 
-        ("Literal Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Literal%20Equations.pdf"),
-        ("Factoring Trinomials", "https://cdn.kutasoftware.com/Worksheets/Alg1/Factoring%201.pdf"),
-        ("Factoring Trinomials (a > 1)", "https://cdn.kutasoftware.com/Worksheets/Alg1/Factoring%202.pdf"), 
-    ],
+
 }
 KEY_WORDS = {
     # "Topic Name": "text or link",
