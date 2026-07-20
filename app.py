@@ -593,11 +593,19 @@ for topic in TOPICS:
 
         st.markdown('<div id="key-words-and-phrases"></div>', unsafe_allow_html=True)
         st.markdown('<div class="resource-label">🔑 Key Words and Phrases</div>', unsafe_allow_html=True)
-        st.markdown(
-            f'<div class="placeholder-box">Placeholder - insert key vocabulary '
-            f'for "{topic}" here.</div>',
-            unsafe_allow_html=True,
-        )
+        if topic in KEY_WORDS:
+            for keyword_entry in KEY_WORDS[topic]:
+                st.markdown(
+                    f'<div class="placeholder-box" style="border-style: solid; '
+                    f'background-color: #FFF8E1;">{keyword_entry}</div>',
+                    unsafe_allow_html=True,
+                )
+        else:
+            st.markdown(
+                f'<div class="placeholder-box">Placeholder - insert key vocabulary '
+                f'for "{topic}" here.</div>',
+                unsafe_allow_html=True,
+            )
 
 st.markdown(
     '<div class="footer-note">SAT Math Resource Hub · Built for focused, guided review</div>',
