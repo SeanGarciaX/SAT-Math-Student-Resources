@@ -80,7 +80,6 @@ TOPICS = [
     "Areas",
     "Volumes",
     "Surface Areas",
-    "Interpreting Graphs",
     "Probability",
     "Percentages",
     "Ratios, Rates and Proportions",
