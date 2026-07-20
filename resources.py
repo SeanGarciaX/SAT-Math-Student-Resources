@@ -90,6 +90,11 @@ VIDEO_LINKS = {
         ("Surface Area of a Rectangular Prism", "https://www.youtube.com/watch?v=dCD02kuobnY&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=3"), 
         ("Surface Area of a Triangular Prism", "https://www.youtube.com/watch?v=918qWRjICbs&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=1"), 
     ],
+
+    "Radians and Degrees": [
+        ("Intro to Radians", ("https://www.youtube.com/watch?v=tSsihw-xPHc&t=1s"), 
+        ("Converting Radians to Degrees and Vice Versa", ("https://www.youtube.com/watch?v=tX6mkpnb_to"),  
+    ]
 }
 EXAMPLE_PROBLEMS = {
     # "Topic Name": "text or link",
