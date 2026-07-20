@@ -104,8 +104,8 @@ VIDEO_LINKS = {
 }
 EXAMPLE_PROBLEMS = {
     # "Topic Name": [("Worksheet Title", "https://link"), ...],
-    "Equivalent Expression": [
-        ("Page 359 #12, Page 360 #16, Page 365 #9, Page 374 #15, Page 478 #9, Page 480 #19, Page 598 #3, Page #599 #9, Page 721 #22, Page 725 #11, Page 726 #12, Page 731 #6"),  
+    "Equivalent Expressions": [
+        ("Textbook Practice Problems", "Page 359 #12, Page 360 #16, Page 365 #9, Page 374 #15, Page 478 #9, Page 480 #19, Page 598 #3, Page 599 #9, Page 721 #22, Page 725 #11, Page 726 #12, Page 731 #6"),
     ],
 }
 KEY_WORDS = {
