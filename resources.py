@@ -92,8 +92,8 @@ VIDEO_LINKS = {
     ],
 
     "Radians and Degrees": [
-        ("Intro to Radians", ("https://www.youtube.com/watch?v=tSsihw-xPHc&t=1s"), 
-        ("Converting Radians to Degrees and Vice Versa", ("https://www.youtube.com/watch?v=tX6mkpnb_to"),  
+        ("Intro to Radians", "https://www.youtube.com/watch?v=tSsihw-xPHc&t=1s"), 
+        ("Converting Radians to Degrees and Vice Versa", "https://www.youtube.com/watch?v=tX6mkpnb_to"),  
     ]
 }
 EXAMPLE_PROBLEMS = {
