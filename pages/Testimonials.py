@@ -582,12 +582,12 @@ st.markdown(
 
             .cloud.enlarged .cloud-text {{
                 max-width: 100%;
-                font-size: 12.5px;
+                font-size: 11px;
                 line-height: 1.55;
             }}
 
             .cloud.enlarged .cloud-name {{
-                font-size: 13px;
+                font-size: 12px;
                 margin-top: 14px;
             }}
         }}
