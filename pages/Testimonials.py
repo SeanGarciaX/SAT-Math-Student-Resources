@@ -301,7 +301,7 @@ st.markdown(
 
         .cloud-container {{
             width: 100%;
-            max-width: 500px;
+            max-width: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -444,7 +444,7 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-text {{
-            max-width: 360px;
+            max-width: 480px;
             margin: 0 auto;
             font-size: 14px;
             line-height: 1.7;
@@ -549,6 +549,45 @@ st.markdown(
                 gap: 30px 20px;
                 padding-left: 0;
                 padding-right: 0;
+            }}
+        }}
+
+        /*
+        Narrow portrait phones (roughly phone width in portrait orientation).
+        The enlarged cloud modal uses fixed padding/font-size/column-width
+        sized for wide screens; on a narrow viewport that fixed padding
+        eats up nearly all the available width, leaving too little room
+        for the text column and causing lines to overlap. This breakpoint
+        scales those values down so the modal fits correctly instead.
+        */
+        @media (max-width: 480px) {{
+            .cloud.enlarged {{
+                width: calc(100vw - 32px);
+                max-width: calc(100vw - 32px);
+                min-width: 0;
+                padding: 46px 20px 30px 20px;
+            }}
+
+            .cloud-modal-content {{
+                padding: 24px 8px;
+            }}
+
+            .cloud-modal-close {{
+                top: 12px;
+                right: 12px;
+                width: 34px;
+                height: 34px;
+            }}
+
+            .cloud.enlarged .cloud-text {{
+                max-width: 100%;
+                font-size: 12.5px;
+                line-height: 1.55;
+            }}
+
+            .cloud.enlarged .cloud-name {{
+                font-size: 13px;
+                margin-top: 14px;
             }}
         }}
     </style>
