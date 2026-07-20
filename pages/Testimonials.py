@@ -445,9 +445,10 @@ st.markdown(
 
         .cloud.enlarged .cloud-text {{
             max-width: 360px;
+            height: auto;
             margin: 0 auto;
             font-size: 12px;
-            line-height: 1.7;
+            line-height: 1.5;
             display: block;
             -webkit-line-clamp: unset;
             overflow: visible;
