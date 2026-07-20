@@ -79,17 +79,7 @@ EXAMPLE_PROBLEMS = {
 }
 KEY_WORDS = {
     # "Topic Name": "text or link",
-"Linear Equations": [
-    ("Linear, slope or slope-intercept form, y-intercept, x-intercept, rate of change, Per (e.g. Dollars per Hour), Unit rate, no solution (parallel), infinitely many solutions (overlapping)"),  
+    "Linear Equations": [
+        ("Linear, slope or slope-intercept form, y-intercept, x-intercept, rate of change, Per (e.g. Dollars per Hour), Unit rate, no solution (parallel), infinitely many solutions (overlapping)"),
     ],
-}
-
-
-
-
-
-
-
-
-    
 }
