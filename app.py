@@ -452,7 +452,7 @@ with st.sidebar:
     if st.button("📝🗒️ Notes", key="nav_notes_btn"):
         safe_switch_page("pages/notes.py")
     st.markdown("---")
-    st.caption("Use the arrow button in the top-left corner to open or close this menu.")
+    st.caption("Click anywhere on the main webpage to close the navigation bar.")
 
 # --------------------------------------------------------------------------
 # CUSTOM SIDEBAR TOGGLE BUTTON (top-left corner)
