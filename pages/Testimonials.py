@@ -33,23 +33,10 @@ ROCKET_B64 = img_to_base64(ROCKET_ICON) if ROCKET_ICON.exists() else None
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = False
 
-if "open_testimonial" not in st.session_state:
-    st.session_state.open_testimonial = None
-
 
 def toggle_sidebar() -> None:
     """Open or close the custom sidebar."""
     st.session_state.sidebar_open = not st.session_state.sidebar_open
-
-
-def open_testimonial(idx: int) -> None:
-    """Open the enlarged modal for a specific testimonial."""
-    st.session_state.open_testimonial = idx
-
-
-def close_testimonial() -> None:
-    """Close the enlarged testimonial modal, if one is open."""
-    st.session_state.open_testimonial = None
 
 
 # --------------------------------------------------------------------------
@@ -191,9 +178,6 @@ st.markdown(
         while tapping anywhere else closes it. Overrides the general
         toggle-button styling above with !important since both buttons
         share the same base "div[data-testid='stButton']" selector.
-        touch-action: pan-y allows vertical scroll gestures to pass
-        through as normal scrolling, while a stationary tap still
-        registers as a click that closes the sidebar.
         */
         .st-key-sidebar_close_overlay {{
             position: fixed !important;
@@ -203,7 +187,6 @@ st.markdown(
             width: 100vw !important;
             height: 100vh !important;
             z-index: 999990 !important;
-            touch-action: pan-y !important;
         }}
 
         .st-key-sidebar_close_overlay button {{
@@ -220,7 +203,6 @@ st.markdown(
             padding: 0 !important;
             margin: 0 !important;
             cursor: default !important;
-            touch-action: pan-y !important;
         }}
 
         .st-key-sidebar_close_overlay button:hover {{
@@ -347,10 +329,16 @@ st.markdown(
             transform: none;
         }}
 
-        /* ---------- Cloud grid (Streamlit columns handle the 2-col layout) ---------- */
-        div[data-testid="column"] {{
-            display: flex;
-            justify-content: center;
+        /* ---------- Cloud grid ---------- */
+        .cloud-field {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            justify-items: center;
+            align-items: start;
+            gap: 36px 28px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 12px 20px 30px 20px;
         }}
 
         .cloud-container {{
@@ -375,7 +363,15 @@ st.markdown(
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: filter 0.2s ease;
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease;
+            cursor: pointer;
+        }}
+
+        .cloud:hover {{
+            transform: translateY(-7px);
+            filter: drop-shadow(0 12px 18px rgba(10, 31, 68, 0.26));
         }}
 
         .cloud-text {{
@@ -404,38 +400,13 @@ st.markdown(
             font-style: normal;
         }}
 
-        /*
-        Invisible click-catcher button, rendered directly beneath each
-        decorative cloud card (in Python) and pulled up over it with a
-        negative margin so the whole card is clickable. Clicking it sets
-        st.session_state.open_testimonial via a real on_click callback -
-        this is what guarantees the modal can only ever open from a
-        deliberate click, unlike the old URL-hash-based approach.
-        */
-        div[class*="st-key-open_testimonial_"] {{
-            margin-top: -210px !important;
-            margin-bottom: 20px !important;
-            position: relative !important;
-            z-index: 6 !important;
+        /* ---------- Cloud modal (click a cloud to enlarge it) ---------- */
+        .cloud-link {{
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }}
 
-        div[class*="st-key-open_testimonial_"] button {{
-            width: 100% !important;
-            height: 210px !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            cursor: pointer !important;
-        }}
-
-        div[class*="st-key-open_testimonial_"] button:hover {{
-            background: transparent !important;
-            transform: none !important;
-        }}
-
-        /* ---------- Cloud modal (rendered only when a testimonial is open) ---------- */
         .cloud-modal-overlay {{
             position: fixed;
             inset: 0;
@@ -443,21 +414,27 @@ st.markdown(
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            visibility: hidden;
             pointer-events: none;
+            transition:
+                opacity 0.28s ease,
+                visibility 0.28s ease;
+        }}
+
+        .cloud-modal-overlay:target {{
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }}
+
+        .cloud-modal-backdrop {{
+            position: absolute;
+            inset: 0;
+            z-index: 1;
             background: rgba(8, 20, 45, 0.78);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            animation: cloudModalFadeIn 0.28s ease;
-        }}
-
-        @keyframes cloudModalFadeIn {{
-            from {{
-                opacity: 0;
-            }}
-
-            to {{
-                opacity: 1;
-            }}
         }}
 
         .cloud-modal-content {{
@@ -467,61 +444,31 @@ st.markdown(
             overflow-y: auto;
             overflow-x: hidden;
             padding: 40px 18px;
-            pointer-events: auto;
+            transform: scale(0.82);
+            transition: transform 0.28s ease;
         }}
 
-        /*
-        Invisible full-screen button sitting just behind the modal
-        overlay's z-index. Since .cloud-modal-overlay has pointer-events
-        none, clicks pass through it to this button everywhere EXCEPT
-        over .cloud-modal-content (which re-enables pointer-events),
-        so clicking the dimmed background closes the modal while
-        clicking the actual cloud content does not.
-        */
-        .st-key-testimonial_backdrop_close {{
-            position: fixed !important;
-            inset: 0 !important;
-            z-index: 9998 !important;
-            touch-action: pan-y !important;
+        .cloud-modal-overlay:target .cloud-modal-content {{
+            transform: scale(1);
         }}
 
-        .st-key-testimonial_backdrop_close button {{
-            position: fixed !important;
-            inset: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            cursor: default !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            touch-action: pan-y !important;
-        }}
-
-        .st-key-testimonial_backdrop_close button:hover {{
-            background: transparent !important;
-            transform: none !important;
-        }}
-
-        .st-key-close_testimonial_modal {{
-            position: fixed !important;
-            top: 20px !important;
-            right: 20px !important;
-            z-index: 10000 !important;
-        }}
-
-        .st-key-close_testimonial_modal button {{
-            width: 38px !important;
-            height: 38px !important;
-            border-radius: 50% !important;
-            background: {NAVY} !important;
-            color: {GOLD} !important;
-            font-weight: 700 !important;
-            font-size: 16px !important;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
-            border: none !important;
-            padding: 0 !important;
+        .cloud-modal-close {{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: {NAVY};
+            color: {GOLD};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 3;
         }}
 
         .cloud.enlarged {{
@@ -532,6 +479,10 @@ st.markdown(
             min-height: 240px;
             padding: 82px 80px 66px 80px;
             cursor: default;
+        }}
+
+        .cloud.enlarged:hover {{
+            transform: none;
         }}
 
         .cloud.enlarged .cloud-text {{
@@ -636,6 +587,12 @@ st.markdown(
             .page-title {{
                 font-size: 34px;
             }}
+
+            .cloud-field {{
+                gap: 30px 20px;
+                padding-left: 0;
+                padding-right: 0;
+            }}
         }}
 
         /*
@@ -658,14 +615,11 @@ st.markdown(
                 padding: 24px 8px;
             }}
 
-            .st-key-close_testimonial_modal {{
-                top: 12px !important;
-                right: 12px !important;
-            }}
-
-            .st-key-close_testimonial_modal button {{
-                width: 34px !important;
-                height: 34px !important;
+            .cloud-modal-close {{
+                top: 12px;
+                right: 12px;
+                width: 34px;
+                height: 34px;
             }}
 
             .cloud.enlarged .cloud-text {{
@@ -726,7 +680,10 @@ st.button(
 # full-screen Streamlit button - not JavaScript click-outside detection,
 # since Streamlit's st.markdown(unsafe_allow_html=True) never executes
 # <script> tags. Tapping it calls the same toggle_sidebar() callback as
-# the arrow button, closing the sidebar.
+# the arrow button, closing the sidebar. It's styled via the ".st-key-
+# sidebar_close_overlay" CSS class above to be invisible and cover the
+# full screen, sitting below the sidebar's own z-index so taps inside
+# the sidebar itself still work normally.
 # --------------------------------------------------------------------------
 if st.session_state.sidebar_open:
     st.button(
@@ -788,27 +745,34 @@ st.markdown(
 )
 
 # --------------------------------------------------------------------------
-# CLOUD TESTIMONIALS + CLICK-TO-ENLARGE MODAL
+# CLOUD TESTIMONIALS + CLICK-TO-ENLARGE MODALS
 #
-# Each cloud is decorative HTML (for the SVG cloud shape) with a real,
-# invisible Streamlit button layered directly on top of it via a
-# negative CSS margin. Clicking that button calls open_testimonial(idx),
-# which sets st.session_state.open_testimonial - the ONLY thing that
-# controls whether the modal renders. Because that state only ever
-# changes inside this specific button's on_click callback, no other
-# rerun (like toggling the sidebar) can ever cause the modal to open on
-# its own, unlike the previous URL-hash-based (:target) approach.
+# Each cloud is a link to a hidden full-screen overlay (id="testimonial-N").
+# The overlay uses the CSS :target pseudo-class to animate in/out, so no
+# JavaScript is required. Everything is built as one concatenated string
+# with no blank lines, since Streamlit's Markdown renderer ends an HTML
+# block at the first blank line it encounters.
+#
+# Each modal is placed in the DOM immediately BEFORE its matching card.
+# Because the modal is position:fixed (out of normal flow), it isn't
+# counted as a grid item, so the visual 2-column grid order is unaffected.
+# This ordering lets a plain CSS sibling selector (~) target "the specific
+# source card whose modal is currently open" and fade it out, so the
+# original small card doesn't show duplicate text behind the enlarged one.
 # --------------------------------------------------------------------------
-cols = st.columns(2)
-for idx, testimonial in enumerate(TESTIMONIALS):
-    is_open = st.session_state.open_testimonial == idx
-    # Hide this specific card's text while its own modal is open, so the
-    # source card doesn't show duplicate text behind the enlarged one.
-    card_style = "opacity:0;" if is_open else ""
+cloud_blocks = []
+hide_source_rules = []
 
-    card_html = (
-        '<div class="cloud-container">'
-        f'<div class="cloud" style="{card_style}">'
+for idx, testimonial in enumerate(TESTIMONIALS):
+    modal_id = f"testimonial-{idx}"
+    source_class = f"cloud-source-{idx}"
+
+    modal_html = (
+        f'<div class="cloud-modal-overlay" id="{modal_id}">'
+        '<a href="#" class="cloud-modal-backdrop" aria-label="Close testimonial"></a>'
+        '<div class="cloud-modal-content">'
+        '<a href="#" class="cloud-modal-close" aria-label="Close testimonial">✕</a>'
+        '<div class="cloud enlarged">'
         '<div class="cloud-text">'
         f'“{testimonial["text"]}”'
         '<span class="cloud-name">'
@@ -817,46 +781,44 @@ for idx, testimonial in enumerate(TESTIMONIALS):
         "</div>"
         "</div>"
         "</div>"
+        "</div>"
     )
 
-    with cols[idx % 2]:
-        st.markdown(card_html, unsafe_allow_html=True)
-        st.button(
-            " ",
-            key=f"open_testimonial_{idx}",
-            on_click=open_testimonial,
-            args=(idx,),
-        )
-
-if st.session_state.open_testimonial is not None:
-    active_testimonial = TESTIMONIALS[st.session_state.open_testimonial]
-
-    modal_html = (
-        '<div class="cloud-modal-overlay">'
-        '<div class="cloud-modal-content">'
-        '<div class="cloud enlarged">'
+    card_html = (
+        f'<a href="#{modal_id}" class="cloud-link {source_class}">'
+        '<div class="cloud-container">'
+        '<div class="cloud">'
         '<div class="cloud-text">'
-        f'“{active_testimonial["text"]}”'
+        f'“{testimonial["text"]}”'
         '<span class="cloud-name">'
-        f'— {active_testimonial["name"]}'
+        f'— {testimonial["name"]}'
         "</span>"
         "</div>"
         "</div>"
         "</div>"
-        "</div>"
+        "</a>"
     )
-    st.markdown(modal_html, unsafe_allow_html=True)
 
-    st.button(
-        " ",
-        key="testimonial_backdrop_close",
-        on_click=close_testimonial,
+    cloud_blocks.append(modal_html + card_html)
+
+    hide_source_rules.append(
+        f"#{modal_id}:target ~ .{source_class} {{ "
+        "opacity: 0; visibility: hidden; transition: opacity 0.2s ease; "
+        "}}"
     )
-    st.button(
-        "✕",
-        key="close_testimonial_modal",
-        on_click=close_testimonial,
-    )
+
+hide_source_css = (
+    '<style>' + "".join(hide_source_rules) + '</style>'
+)
+
+clouds_html = (
+    hide_source_css
+    + '<div class="cloud-field">'
+    + "".join(cloud_blocks)
+    + "</div>"
+)
+
+st.markdown(clouds_html, unsafe_allow_html=True)
 
 # --------------------------------------------------------------------------
 # ROCKET SEND-OFF SECTION
