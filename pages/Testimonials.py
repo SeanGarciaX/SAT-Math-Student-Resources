@@ -561,7 +561,7 @@ st.markdown(
         for the text column and causing lines to overlap. This breakpoint
         scales those values down so the modal fits correctly instead.
         */
-        @media (max-width: 480px) {{
+        @media (max-width: 440px) {{
             .cloud.enlarged {{
                 width: calc(100vw - 32px);
                 max-width: calc(100vw - 32px);
