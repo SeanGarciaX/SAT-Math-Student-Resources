@@ -585,13 +585,14 @@ for topic in TOPICS:
         st.markdown('<div id="example-problems"></div>', unsafe_allow_html=True)
         st.markdown('<div class="resource-label">✏️ Example Problems</div>', unsafe_allow_html=True)
         if topic in EXAMPLE_PROBLEMS:
-            st.markdown(
-                f'<div class="placeholder-box" style="border-style: solid; '
-                f'background-color: #FFF8E1;">'
-                f'<a href="{EXAMPLE_PROBLEMS[topic]}" target="_blank" style="color:{NAVY}; '
-                f'font-weight:600; text-decoration:none;">📄 View Example Problems</a></div>',
-                unsafe_allow_html=True,
-            )
+            for problem_title, problem_url in EXAMPLE_PROBLEMS[topic]:
+                st.markdown(
+                    f'<div class="placeholder-box" style="border-style: solid; '
+                    f'background-color: #FFF8E1;">'
+                    f'<a href="{problem_url}" target="_blank" style="color:{NAVY}; '
+                    f'font-weight:600; text-decoration:none;">📄 {problem_title}</a></div>',
+                    unsafe_allow_html=True,
+                )
         else:
             st.markdown(
                 f'<div class="placeholder-box">Placeholder - insert example problems / worksheet '
