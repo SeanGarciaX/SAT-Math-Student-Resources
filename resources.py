@@ -86,4 +86,8 @@ KEY_WORDS = {
     "Exponential Equations": [
         ("Double, Triple, Quadruple, Half, Cut in half, One-third remains, One-quarter remains, Doubles every year, Triples every month, Halves every hour, Increases by __%, Decreases by __%, Percent growth, Percent decay, Compound interest, Population growth, Depreciation, Radioactive decay, Half-life, Grows exponentially"),  
     ],
+
+    "Quadratic Equations": [
+        ("Quadratic, Parabola, Vertex, Maximum value, Minimum value, X-intercepts, Zeros, Roots, Axis of symmetry, Opens upward, Opens downward, Standard form, Vertex form, Factored form, Quadratic formula, Discriminant, Turning point, Tangent to the parabola, Two real solutions, One real solution, No real solutions"),
+    ],
 }
