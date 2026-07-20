@@ -25,7 +25,7 @@ VIDEO_LINKS = {
         ("What is a radical?", "https://www.youtube.com/watch?v=DDrXTPQp_BY"),
         ("Breaking down large number radicals" "https://www.youtube.com/watch?v=u2Z1hoXSrXk"), 
         ("Simplfying Radical Expressions, "https://www.youtube.com/watch?v=i36qsgJsHg8"), 
-    ]
+    ],
     "Linear Equations": [
         ("Slope-Intercept Form (y = mx + b)", "https://www.youtube.com/watch?v=VUksb273hv8"),
         ("Standard Form of a Linear Equation (Ax + By = C)", "https://www.youtube.com/watch?v=vNHtzrzOfSU"),
