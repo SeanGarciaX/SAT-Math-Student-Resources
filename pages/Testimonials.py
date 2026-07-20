@@ -581,7 +581,7 @@ st.markdown(
             }}
 
             .cloud.enlarged .cloud-text {{
-                max-width: 100%;
+                max-width: 90%;
                 font-size: 10px;
                 line-height: 1.55;
             }}
