@@ -18,12 +18,15 @@
 VIDEO_LINKS = {
     "Desmos Tutorial": [
         ("DESMOS for Beginners", "https://www.youtube.com/watch?v=6SpIlYzIWbo"),
+        ("Desmos Hacks", "https://www.youtube.com/watch?v=ZYDcmWtfLkk&t=77s"),
     ],
     "Linear Equations": [
         ("Slope-Intercept Form (y = mx + b)", "https://www.youtube.com/watch?v=VUksb273hv8"),
         ("Standard Form of a Linear Equation (Ax + By = C)", "https://www.youtube.com/watch?v=vNHtzrzOfSU"),
         ("Slope Formula", "https://www.youtube.com/watch?v=E5lCvitzOaI"),
         ("Parallel and Perpendicular Lines", "https://www.youtube.com/watch?v=0oe-GqFrYFU"),
+        ("Systems of Equations Non-Word Problems with DESMOS", "https://www.youtube.com/watch?v=EjRNPWystLU&t=44s"),
+        ("Systems of Equations Word Problems with DESMOS", "https://www.youtube.com/watch?v=_WNPqu18vQg"), 
     ],
     "Exponential Equations": [
         ("Intro to Exponential Functions", "https://www.youtube.com/watch?v=nqpn0SQB5ds"),
@@ -45,7 +48,6 @@ VIDEO_LINKS = {
     ],
     "Functions": [
         ("Evaluating Functions in DESMOS", "https://www.youtube.com/watch?v=M9Uhvbe_chQ"),
-        ("Desmos Hacks", "https://www.youtube.com/watch?v=ZYDcmWtfLkk&t=77s"),
     ],
     "Equivalent Expressions": [
         ("Artimetic Example", "https://www.youtube.com/watch?v=9uUUGk5H2Dk&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB"), 
