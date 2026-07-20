@@ -68,7 +68,7 @@ VIDEO_LINKS = {
     "Equivalent Expressions": [
         ("Artimetic Example", "https://www.youtube.com/watch?v=9uUUGk5H2Dk&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB"), 
         ("Distribution Example", "https://www.youtube.com/watch?v=7nQvGmGOJNY&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=2"),
-        ("Facotring Example", "https://www.youtube.com/watch?v=DDmsRSWDGhQ&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=3"), 
+        ("Factoring Example", "https://www.youtube.com/watch?v=DDmsRSWDGhQ&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=3"), 
         ("Multi-Step Example", "https://www.youtube.com/watch?v=z0b64JRnvbM&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=4"), 
         ("Substitution Example", "https://www.youtube.com/watch?v=2RlzU8qEQK4&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=6"), 
         ("Multi-Function Example", "https://www.youtube.com/watch?v=G1VBSnJZFws&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB&index=8"), 
@@ -106,6 +106,11 @@ EXAMPLE_PROBLEMS = {
     # "Topic Name": [("Worksheet Title", "https://link"), ...],
     "Equivalent Expressions": [
         ("One-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/One-Step%20Equations.pdf"),
+        ("Two-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Two-Step%20Equations.pdf"),
+        ("Multi-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Multi-Step%20Equations.pdf"), 
+        ("Literal Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/Literal%20Equations.pdf"),
+        ("Factoring Trinomials", "https://cdn.kutasoftware.com/Worksheets/Alg1/Factoring%201.pdf"),
+        ("Factoring Trinomials (a > 1)", "https://cdn.kutasoftware.com/Worksheets/Alg1/Factoring%202.pdf"), 
     ],
 }
 KEY_WORDS = {
