@@ -98,6 +98,9 @@ VIDEO_LINKS = {
 }
 EXAMPLE_PROBLEMS = {
     # "Topic Name": "text or link",
+    "Equivalent Expressions": [
+        ("One-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/One-Step%20Equations.pdf",
+    ],
 }
 KEY_WORDS = {
     # "Topic Name": "text or link",
