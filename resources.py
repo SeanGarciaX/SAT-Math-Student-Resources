@@ -82,4 +82,8 @@ KEY_WORDS = {
     "Linear Equations": [
         ("Linear, slope or slope-intercept form, y-intercept, x-intercept, rate of change, Per (e.g. Dollars per Hour), Unit rate, no solution (parallel), infinitely many solutions (overlapping)"),
     ],
+
+    "Exponential Equations": [
+        ("Double, Triple, Quadruple, Half, Cut in half, One-third remains, One-quarter remains, Doubles every year, Triples every month, Halves every hour, Increases by __%, Decreases by __%, Percent growth, Percent decay, Compound interest, Population growth, Depreciation, Radioactive decay, Half-life, Grows exponentially"),  
+    ],
 }
