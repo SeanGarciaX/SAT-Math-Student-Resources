@@ -66,6 +66,7 @@ if st.session_state.sidebar_open:
         min-width: 260px !important;
         width: 260px !important;
         transform: none !important;
+        z-index: 999995 !important;
     }
     """
 else:
@@ -150,6 +151,47 @@ st.markdown(
             background-color: #14306E;
             color: {GOLD};
             border: 2px solid {GOLD};
+        }}
+
+        /*
+        Invisible full-screen "tap anywhere to close" overlay button.
+        Only rendered (in Python, below) while the sidebar is open. Sits
+        above normal page content but below the sidebar itself (via
+        z-index), so tapping inside the sidebar still works normally,
+        while tapping anywhere else closes it. Overrides the general
+        toggle-button styling above with !important since both buttons
+        share the same base "div[data-testid='stButton']" selector.
+        */
+        .st-key-sidebar_close_overlay {{
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 999990 !important;
+        }}
+
+        .st-key-sidebar_close_overlay button {{
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            cursor: default !important;
+        }}
+
+        .st-key-sidebar_close_overlay button:hover {{
+            background: transparent !important;
+            transform: none !important;
+            border: none !important;
         }}
 
         div[data-testid="stSidebarCollapseButton"],
@@ -401,6 +443,25 @@ st.button(
     key="sidebar_toggle_btn",
     on_click=toggle_sidebar,
 )
+
+# --------------------------------------------------------------------------
+# TAP-ANYWHERE-TO-CLOSE OVERLAY
+#
+# Only rendered while the sidebar is open. This is a real, invisible,
+# full-screen Streamlit button - not JavaScript click-outside detection,
+# since Streamlit's st.markdown(unsafe_allow_html=True) never executes
+# <script> tags. Tapping it calls the same toggle_sidebar() callback as
+# the arrow button, closing the sidebar. It's styled via the ".st-key-
+# sidebar_close_overlay" CSS class above to be invisible and cover the
+# full screen, sitting below the sidebar's own z-index so taps inside
+# the sidebar itself still work normally.
+# --------------------------------------------------------------------------
+if st.session_state.sidebar_open:
+    st.button(
+        " ",
+        key="sidebar_close_overlay",
+        on_click=toggle_sidebar,
+    )
 
 # --------------------------------------------------------------------------
 # HEADER
