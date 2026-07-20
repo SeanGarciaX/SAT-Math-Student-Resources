@@ -444,7 +444,7 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-text {{
-            max-width: 480px;
+            max-width: 420px;
             margin: 0 auto;
             font-size: 14px;
             line-height: 1.7;
@@ -456,7 +456,7 @@ st.markdown(
         }}
 
         .cloud.enlarged .cloud-name {{
-            font-size: 15px;
+            font-size: 14px;
             margin-top: 18px;
         }}
 
