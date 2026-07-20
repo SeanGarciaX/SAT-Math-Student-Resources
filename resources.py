@@ -12,8 +12,14 @@
 #   ]
 #   (a topic can have one video or several - just add more tuples to the list)
 #
-# EXAMPLE_PROBLEMS format: "Topic Name": "text or link"      (not used yet)
-# KEY_WORDS format:        "Topic Name": "text or link"      (not used yet)
+# EXAMPLE_PROBLEMS format:
+#   "Topic Name": [
+#       ("Worksheet Title", "https://link-to-pdf-or-page"),
+#       ("Another Worksheet Title", "https://link..."),
+#   ]
+#   (same shape as VIDEO_LINKS - a topic can have one or several)
+#
+# KEY_WORDS format: "Topic Name": ["one string of keywords/phrases"]
 # --------------------------------------------------------------------------
 VIDEO_LINKS = {
     "Desmos Tutorial": [
@@ -97,9 +103,9 @@ VIDEO_LINKS = {
     ]
 }
 EXAMPLE_PROBLEMS = {
-    # "Topic Name": "text or link",
+    # "Topic Name": [("Worksheet Title", "https://link"), ...],
     "Equivalent Expressions": [
-        ("One-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/One-Step%20Equations.pdf",
+        ("One-Step Equations", "https://cdn.kutasoftware.com/Worksheets/Alg1/One-Step%20Equations.pdf"),
     ],
 }
 KEY_WORDS = {
