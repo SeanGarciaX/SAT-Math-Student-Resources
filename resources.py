@@ -47,7 +47,11 @@ VIDEO_LINKS = {
         ("Find the endpoints from the diameter", "https://www.youtube.com/watch?v=OKsIh-pqGaE&t=109s"),
     ],
     "Functions": [
+        ("Fundamentals for evalutating a function", "https://www.youtube.com/watch?v=6ZVaNa_6LGw"), 
         ("Evaluating Functions in DESMOS", "https://www.youtube.com/watch?v=M9Uhvbe_chQ"),
+        ("Evaluating Algebraic Functions", "https://www.youtube.com/watch?v=JeFiC7u1gdg"), 
+        ("Adding and Subtracting Functions", "https://www.youtube.com/watch?v=WZTqq4K8dCA&list=PL0G-Nd0V5ZMpvHn2rXSiD2fpde-OnjHVq"),
+        
     ],
     "Equivalent Expressions": [
         ("Artimetic Example", "https://www.youtube.com/watch?v=9uUUGk5H2Dk&list=PLlvPF6rDVN_vKJCiZexiedPpwYHp5tsbB"), 
@@ -74,6 +78,11 @@ VIDEO_LINKS = {
     "Ratios, Rates and Proportions": [
         ("Unit Conversion using the Dimensional Analysis Method", "https://www.youtube.com/watch?v=HRe1mire4Gc&t=1s"),
         ("Unit Conversion for Squared or Cubed Units", "https://www.youtube.com/watch?v=MRiUQsfI_2k"),
+    ],
+    "Surface Area": [
+        ("Surface Area of a Cube", "https://www.youtube.com/watch?v=NPFSV6nEK_Q"),
+        ("Surface Area of a Rectangular Prism", "https://www.youtube.com/watch?v=dCD02kuobnY&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=3"), 
+        ("Surface Area of a Triangular Prism", "https://www.youtube.com/watch?v=918qWRjICbs&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=1"), 
     ],
 }
 EXAMPLE_PROBLEMS = {
