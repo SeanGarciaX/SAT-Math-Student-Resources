@@ -85,7 +85,7 @@ VIDEO_LINKS = {
         ("Unit Conversion using the Dimensional Analysis Method", "https://www.youtube.com/watch?v=HRe1mire4Gc&t=1s"),
         ("Unit Conversion for Squared or Cubed Units", "https://www.youtube.com/watch?v=MRiUQsfI_2k"),
     ],
-    "Surface Area": [
+    "Surface Areas": [
         ("Surface Area of a Cube", "https://www.youtube.com/watch?v=NPFSV6nEK_Q"),
         ("Surface Area of a Rectangular Prism", "https://www.youtube.com/watch?v=dCD02kuobnY&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=3"), 
         ("Surface Area of a Triangular Prism", "https://www.youtube.com/watch?v=918qWRjICbs&list=PLiT3pCvK_cfUYThQ93RBrpO5zL8rKaz3x&index=1"), 
